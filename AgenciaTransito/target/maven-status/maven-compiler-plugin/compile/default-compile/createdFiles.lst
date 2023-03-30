@@ -1,0 +1,14 @@
+org\itson\dominio\Persona_.class
+org\itson\dominio\Tramite_.class
+org\itson\dominio\Tramite.class
+org\itson\dominio\Vehiculo.class
+org\itson\dominio\TipoLicencia.class
+org\itson\pruebas\pruebas.class
+org\itson\dominio\Estado.class
+org\itson\dominio\Licencia_.class
+org\itson\dominio\Persona.class
+org\itson\dominio\Licencia.class
+org\itson\dominio\TipoPlaca.class
+org\itson\dominio\Placa_.class
+org\itson\dominio\Vehiculo_.class
+org\itson\dominio\Placa.class
