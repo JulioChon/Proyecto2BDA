@@ -182,7 +182,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Busqueda por Curp"/>
+                    <Property name="text" type="java.lang.String" value="Busqueda por RFC"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField1">
@@ -205,7 +205,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="CURP"/>
+                    <Property name="text" type="java.lang.String" value="RFC"/>
                   </Properties>
                 </Component>
               </SubComponents>

@@ -91,7 +91,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("CURP");
+        jLabel4.setText("RFC");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Luis Pablo Ayon" }));
 
