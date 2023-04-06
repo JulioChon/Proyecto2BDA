@@ -5,8 +5,10 @@
 package org.itson.dominio;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -134,6 +136,34 @@ public class Persona implements Serializable {
 
     public void setListaVehiculos(List<Vehiculo> listaVehiculos) {
         this.listaVehiculos = listaVehiculos;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.rfc);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Persona other = (Persona) obj;
+        return Objects.equals(this.rfc, other.rfc);
+    }
+
+    @Override
+    public String toString() {
+         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        return   rfc + " "+ nombre+ " " + apellidoPaterno +" "+ apellidoMaterno +" "+ formateador.format(fechaNacimiento.getTime()) + " "+ telefono;
     }
     
     

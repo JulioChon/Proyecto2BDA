@@ -4,6 +4,9 @@
  */
 package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
+import javax.swing.JOptionPane;
+import org.itson.DAO.PersonasDAO;
+
 /**
  *
  * @author Zaurus
@@ -15,6 +18,11 @@ public class MenuInicio extends javax.swing.JFrame {
      */
     public MenuInicio() {
         initComponents();
+        this.setVisible(true);
+    }
+    public void mostrarMensajePersonasGuardadas() {
+        JOptionPane.showMessageDialog(this, "Personas agregadas correctamente",
+                "Completado", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -29,8 +37,8 @@ public class MenuInicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnTramiteLicencia = new javax.swing.JButton();
+        btnRegistrarPersonas = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -42,9 +50,9 @@ public class MenuInicio extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 0));
 
+        jLabel1.setText("Sistema de tramites del estado de Sonora");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Sistema de tramites del estado de Sonora");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -63,34 +71,39 @@ public class MenuInicio extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tramite Licencia");
-
-        jButton2.setBackground(new java.awt.Color(153, 0, 51));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Registrar(Personas)");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnTramiteLicencia.setText("Tramite Licencia");
+        btnTramiteLicencia.setBackground(new java.awt.Color(153, 0, 51));
+        btnTramiteLicencia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnTramiteLicencia.setForeground(new java.awt.Color(255, 255, 255));
+        btnTramiteLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnTramiteLicenciaActionPerformed(evt);
             }
         });
 
+        btnRegistrarPersonas.setText("Registrar(Personas)");
+        btnRegistrarPersonas.setBackground(new java.awt.Color(153, 0, 51));
+        btnRegistrarPersonas.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarPersonas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPersonasActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Reportes de tramites");
         jButton3.setBackground(new java.awt.Color(153, 0, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Reportes de tramites");
 
+        jButton4.setText("Tramite Placas");
         jButton4.setBackground(new java.awt.Color(153, 0, 51));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Tramite Placas");
 
+        jButton5.setText("Historial de tramites");
         jButton5.setBackground(new java.awt.Color(153, 0, 51));
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Historial de tramites");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -107,14 +120,14 @@ public class MenuInicio extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTramiteLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnRegistrarPersonas)
                         .addGap(204, 204, 204)))
                 .addContainerGap())
         );
@@ -124,7 +137,7 @@ public class MenuInicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTramiteLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
@@ -132,7 +145,7 @@ public class MenuInicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnRegistrarPersonas)
                 .addGap(62, 62, 62))
         );
 
@@ -152,54 +165,29 @@ public class MenuInicio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnRegistrarPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPersonasActionPerformed
+        PersonasDAO personasDAO = new PersonasDAO();
+        personasDAO.agregarPersonas();
+        this.mostrarMensajePersonasGuardadas();
+    }//GEN-LAST:event_btnRegistrarPersonasActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuInicio().setVisible(true);
-            }
-        });
-    }
+    private void btnTramiteLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTramiteLicenciaActionPerformed
+        this.dispose();
+        BusquedaPersona busquedaPersona = new BusquedaPersona();
+    }//GEN-LAST:event_btnTramiteLicenciaActionPerformed
+
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnRegistrarPersonas;
+    private javax.swing.JButton btnTramiteLicencia;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

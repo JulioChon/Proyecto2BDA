@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -58,7 +58,7 @@
                       <Component id="jButton3" min="-2" pref="434" max="-2" attributes="0"/>
                       <Component id="jButton5" min="-2" pref="434" max="-2" attributes="0"/>
                       <Component id="jButton4" min="-2" pref="434" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="434" max="-2" attributes="0"/>
+                      <Component id="btnTramiteLicencia" min="-2" pref="434" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -67,7 +67,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnRegistrarPersonas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -81,7 +81,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="62" max="-2" attributes="0"/>
+                  <Component id="btnTramiteLicencia" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="jButton4" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace pref="29" max="32767" attributes="0"/>
@@ -89,7 +89,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButton3" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRegistrarPersonas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -126,19 +126,20 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Sistema de tramites del estado de Sonora"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="28" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Sistema de tramites del estado de Sonora"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnTramiteLicencia">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Tramite Licencia"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="99" type="rgb"/>
             </Property>
@@ -148,25 +149,28 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tramite Licencia"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTramiteLicenciaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnRegistrarPersonas">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Registrar(Personas)"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="99" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Registrar(Personas)"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarPersonasActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Reportes de tramites"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="99" type="rgb"/>
             </Property>
@@ -176,11 +180,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reportes de tramites"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Tramite Placas"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="99" type="rgb"/>
             </Property>
@@ -190,11 +194,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tramite Placas"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Historial de tramites"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="99" type="rgb"/>
             </Property>
@@ -204,7 +208,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Historial de tramites"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
