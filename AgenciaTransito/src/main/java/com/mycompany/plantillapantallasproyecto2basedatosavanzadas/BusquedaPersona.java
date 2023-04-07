@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import org.itson.DAO.ParametrosBusquedaPersonas;
 import org.itson.DAO.PersonasDAO;
 import org.itson.dominio.Persona;
+import utilidades.Ventana;
 
 /**
  *
@@ -32,12 +33,12 @@ public class BusquedaPersona extends javax.swing.JFrame {
 
     private ParametrosBusquedaPersonas params;
     private static final Logger LOG = Logger.getLogger(Persona.class.getName());
-    private int ventanaSiguiente; // 1 = tramite licencia, 2 = tramite placas, 3 = Historial tramites
+    private Ventana ventanaSiguiente; // 1 = tramite licencia, 2 = tramite placas, 3 = Historial tramites
     private Persona persona;
     /**
      * Creates new form TramiteLicencia
      */
-    public BusquedaPersona(int ventanaSiguiente) {
+    public BusquedaPersona(Ventana ventanaSiguiente) {
         initComponents();
         this.setVisible(true);
         params = new ParametrosBusquedaPersonas();
@@ -116,16 +117,18 @@ public class BusquedaPersona extends javax.swing.JFrame {
             valoresFila.add(valor);
         }
         this.creacionPersona(valoresFila);
-        if(ventanaSiguiente == 1){
+        if(ventanaSiguiente == Ventana.TRAMITELICENCIAS){
             this.dispose();
             new TramiteLicencia(persona);
            
         }
-        if(ventanaSiguiente == 2){
-            
+        if(ventanaSiguiente == Ventana.TRAMITEPLACAS){
+            this.dispose();
+            new TramitePlacas(persona);
         }
-        if(ventanaSiguiente == 3){
-            
+        if(ventanaSiguiente == Ventana.REGISTROVEHICULOS){
+            this.dispose();
+            new RegistrarVehiculo(persona);
         }
         
 
@@ -410,7 +413,7 @@ public class BusquedaPersona extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 583, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

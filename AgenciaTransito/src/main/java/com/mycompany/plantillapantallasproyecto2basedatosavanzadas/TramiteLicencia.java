@@ -5,6 +5,7 @@
 package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
 import org.itson.dominio.Persona;
+import utilidades.Ventana;
 
 /**
  *
@@ -83,7 +84,13 @@ public class TramiteLicencia extends javax.swing.JFrame {
         txtInformacionPersona.setBackground(new java.awt.Color(0, 51, 0));
         txtInformacionPersona.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         txtInformacionPersona.setForeground(new java.awt.Color(255, 255, 255));
+        txtInformacionPersona.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtInformacionPersona.setBorder(null);
+        txtInformacionPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInformacionPersonaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -265,9 +272,9 @@ public class TramiteLicencia extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(12, 12, 12))
         );
 
@@ -361,12 +368,13 @@ public class TramiteLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn1AnoActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        
         System.out.println(txtPrecio.getText());
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
-        BusquedaPersona busquedaPersona = new BusquedaPersona(1);
+        BusquedaPersona busquedaPersona = new BusquedaPersona(Ventana.TRAMITELICENCIAS);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void rbtnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnSiActionPerformed
@@ -392,6 +400,10 @@ public class TramiteLicencia extends javax.swing.JFrame {
            txtPrecio.setText("1100");
        }
     }//GEN-LAST:event_rbtnNoActionPerformed
+
+    private void txtInformacionPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInformacionPersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInformacionPersonaActionPerformed
 
  
 
