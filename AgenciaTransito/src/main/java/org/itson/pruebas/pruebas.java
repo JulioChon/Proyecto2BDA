@@ -13,6 +13,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.itson.DAO.ParametrosBusquedaPersonas;
 import org.itson.DAO.PersonasDAO;
+import org.itson.DAO.TramitesDAO;
 import org.itson.dominio.Estado;
 import org.itson.dominio.Licencia;
 import org.itson.dominio.Persona;
@@ -39,6 +40,11 @@ public class pruebas {
 //        for (Persona persona : personas) {
 //            System.out.println(persona.getNombre());   
 //        }
+//        TramitesDAO tramitesDAO = new TramitesDAO();
+//        //Persona persona = new Persona(rfc, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, telefono)
+//        Licencia licencia = new Licencia(TipoLicencia.normal, Estado.Activo, 1100, new GregorianCalendar(1989,10-1,27), new GregorianCalendar(1989,10-1,27), personas.get(0));
+//        tramitesDAO.registrarLicencia(licencia);
+    
     }
     
 }

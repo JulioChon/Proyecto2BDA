@@ -180,7 +180,7 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void btnTramiteLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTramiteLicenciaActionPerformed
         this.dispose();
-        BusquedaPersona busquedaPersona = new BusquedaPersona();
+        BusquedaPersona busquedaPersona = new BusquedaPersona(1);
     }//GEN-LAST:event_btnTramiteLicenciaActionPerformed
 
   
