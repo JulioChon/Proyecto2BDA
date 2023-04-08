@@ -5,7 +5,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import org.itson.dominio.TipoLicencia;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-04-07T21:08:04", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-04-07T22:12:21", comments="EclipseLink-2.7.10.v20211216-rNA")
 @StaticMetamodel(Licencia.class)
 public class Licencia_ extends Tramite_ {
 

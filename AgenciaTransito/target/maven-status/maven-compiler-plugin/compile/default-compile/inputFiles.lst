@@ -1,28 +1,28 @@
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Automovil.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MostrarReporte.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\TipoPlaca.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\utilidades\Validaciones.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Estado.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Placa.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\TipoLicencia.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\interfaces\IPersonasDAO.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Licencia.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Tramite.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\VehiculosDAO.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\utilidades\Ventana.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\PersonasDAO.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\botonesTabla\botonRenderizador.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Persona.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\pruebas\pruebas.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\botonesTabla\seleccionadorBoton.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\TramitesDAO.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\interfaces\ITramite.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Vehiculo.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\ParametrosBusquedaPersonas.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\interfaces\IPersonasDAO.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Tramite.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\utilidades\Validaciones.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\ParametrosBusquedaPersonas.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Placa.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Automovil.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\interfaces\ITramite.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Vehiculo.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\botonesTabla\botonRenderizador.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\TipoLicencia.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\TipoPlaca.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\utilidades\Ventana.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\VehiculosDAO.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MostrarReporte.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\pruebas\pruebas.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\PersonasDAO.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Estado.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\TramitesDAO.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Persona.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Licencia.java
+C:\Users\julio\OneDrive\Escritorio\Proyecto2BDA\AgenciaTransito\src\main\java\botonesTabla\seleccionadorBoton.java

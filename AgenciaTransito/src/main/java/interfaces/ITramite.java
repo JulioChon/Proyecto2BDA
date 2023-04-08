@@ -5,6 +5,7 @@
 package interfaces;
 
 import org.itson.dominio.Licencia;
+import org.itson.dominio.Placa;
 
 
 
@@ -14,4 +15,5 @@ import org.itson.dominio.Licencia;
  */
 public interface ITramite {
     void registrarLicencia(Licencia licencia);
+    void registrarPlaca (Placa placa);
 }

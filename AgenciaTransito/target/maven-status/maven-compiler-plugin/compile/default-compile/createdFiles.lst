@@ -52,7 +52,6 @@ botonesTabla\seleccionadorBoton.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$5.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$4.class
 org\itson\dominio\Persona_.class
-com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$8.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona$2.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$2.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo$4.class
@@ -68,5 +67,6 @@ interfaces\IPersonasDAO.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$1.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$5.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio.class
+com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas$4.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas.class
 org\itson\dominio\Automovil.class

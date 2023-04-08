@@ -61,6 +61,16 @@ public class Vehiculo implements Serializable {
         this.listaPlacas = listaPlacas;
     }
 
+    public Vehiculo(String numeroSerie, String color, String linea, String marca, String modelo, Persona persona) {
+        this.numeroSerie = numeroSerie;
+        this.color = color;
+        this.linea = linea;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.persona = persona;
+    }
+    
+
     public String getNumeroSerie() {
         return numeroSerie;
     }

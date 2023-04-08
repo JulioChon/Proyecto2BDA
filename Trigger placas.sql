@@ -22,11 +22,31 @@ UPDATE licencias SET estado = 'inactivo' WHERE rfc = p_rfc AND estado = 'activo'
   
   INSERT INTO licencias (Costo, estado, fecha_expedicion, tipoCosto, vigencia, rfc)
   VALUES (p_costo, p_estado, p_fecha_expedicion, p_tipoCosto, p_vigencia, p_rfc);
-  
- 
-  
 END;$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE actualizar_placas(
+    IN p_numero_serie VARCHAR(10),
+    IN p_fecha_entrega DATE,
+    IN p_fecha_expedicion DATE,
+    IN p_vigencia Date,
+    IN p_tipo_placa VARCHAR(50),
+    IN p_rfc VARCHAR(50),
+    IN p_costo DECIMAL(10,2),
+    IN p_estado VARCHAR(20)
+)
+BEGIN
+  
+  UPDATE placas SET estado = 'inactivo'
+  WHERE numeroserie = p_numero_serie;
+  
+
+  INSERT INTO placas (numeroserie, fecha_entrega, fecha_expedicion, vigencia, tipoPlaca, rfc, costo, estado)
+  VALUES (p_numero_serie, p_fecha_entrega, p_fecha_expedicion, p_vigencia, p_tipo_placa, p_rfc, p_costo, p_estado);
+END;$$
+DELIMITER ;
+
 
 
 

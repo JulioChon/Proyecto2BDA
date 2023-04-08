@@ -4,7 +4,15 @@
  */
 package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
+import org.itson.DAO.TramitesDAO;
+import org.itson.dominio.Estado;
+import org.itson.dominio.Licencia;
 import org.itson.dominio.Persona;
+import org.itson.dominio.TipoLicencia;
 import utilidades.Ventana;
 
 /**
@@ -13,6 +21,8 @@ import utilidades.Ventana;
  */
 public class TramiteLicencia extends javax.swing.JFrame {
     private Persona personaTramite;
+    private TipoLicencia tipoLicencia;
+    private int anosVigencia;
     /**
      * Creates new form TramiteLicencia
      */
@@ -24,6 +34,36 @@ public class TramiteLicencia extends javax.swing.JFrame {
                 + personaTramite.getApellidoPaterno() + " " + personaTramite.getApellidoMaterno();
         txtInformacionPersona.setText(informacion);
 
+    }
+     public void mostrarMensajeLicenciaGuardadas() {
+        JOptionPane.showMessageDialog(this, "Licencia guardada correctamente",
+                "Completado", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void creacionObjeto(){
+        Licencia licencia = new Licencia();
+        GregorianCalendar fechaActual = new GregorianCalendar();
+        GregorianCalendar fechaVencimiento = new GregorianCalendar();
+        if(anosVigencia == 1){
+           fechaVencimiento.add(Calendar.YEAR, 1);
+        }
+        if(anosVigencia == 2){
+            fechaVencimiento.add(Calendar.YEAR, 2);
+        }
+        if(anosVigencia == 3){
+            fechaVencimiento.add(Calendar.YEAR, 3);
+        }
+        licencia.setCosto(Float.parseFloat(txtPrecio.getText()));
+        licencia.setEstado(Estado.Activo);
+        licencia.setFechaExpedicion(fechaActual);
+        licencia.setTipoCosto(tipoLicencia);
+        licencia.setVigencia(fechaVencimiento);
+        licencia.setPersona(personaTramite);
+        TramitesDAO tramitesDAO = new TramitesDAO();
+        tramitesDAO.registrarLicencia(licencia); 
+        this.mostrarMensajeLicenciaGuardadas();
+        this.dispose();
+        new MenuInicio();
     }
 
     /**
@@ -86,11 +126,6 @@ public class TramiteLicencia extends javax.swing.JFrame {
         txtInformacionPersona.setForeground(new java.awt.Color(255, 255, 255));
         txtInformacionPersona.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtInformacionPersona.setBorder(null);
-        txtInformacionPersona.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInformacionPersonaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -341,6 +376,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtn3AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn3AnoActionPerformed
+        this.anosVigencia = 3;
         if(rbtnNo.isSelected()){
             txtPrecio.setText("1100");
         }
@@ -350,6 +386,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn3AnoActionPerformed
 
     private void rbtn2AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn2AnoActionPerformed
+        this.anosVigencia = 3;
         if(rbtnNo.isSelected()){
             txtPrecio.setText("900");
         }
@@ -359,6 +396,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn2AnoActionPerformed
 
     private void rbtn1AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn1AnoActionPerformed
+        this.anosVigencia = 3;
         if(rbtnNo.isSelected()){
             txtPrecio.setText("600");
         }
@@ -368,8 +406,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn1AnoActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
-        System.out.println(txtPrecio.getText());
+      this.creacionObjeto();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -378,7 +415,8 @@ public class TramiteLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void rbtnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnSiActionPerformed
-       if(rbtn1Ano.isSelected()){
+       this.tipoLicencia = TipoLicencia.Discapacitado;
+        if(rbtn1Ano.isSelected()){
            txtPrecio.setText("200");
        }
        if(rbtn2Ano.isSelected()){
@@ -390,7 +428,8 @@ public class TramiteLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtnSiActionPerformed
 
     private void rbtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnNoActionPerformed
-       if(rbtn1Ano.isSelected()){
+       this.tipoLicencia = TipoLicencia.Discapacitado;
+        if(rbtn1Ano.isSelected()){
            txtPrecio.setText("600");
        }
        if(rbtn2Ano.isSelected()){
@@ -400,10 +439,6 @@ public class TramiteLicencia extends javax.swing.JFrame {
            txtPrecio.setText("1100");
        }
     }//GEN-LAST:event_rbtnNoActionPerformed
-
-    private void txtInformacionPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInformacionPersonaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInformacionPersonaActionPerformed
 
  
 
