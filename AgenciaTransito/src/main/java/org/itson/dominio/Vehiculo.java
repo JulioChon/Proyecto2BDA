@@ -141,7 +141,7 @@ public class Vehiculo implements Serializable {
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "numeroSerie=" + numeroSerie + ", color=" + color + ", linea=" + linea + ", marca=" + marca + ", modelo=" + modelo + ", persona=" + persona + ", listaPlacas =" + listaPlacas + '}';
+        return "Vehiculo[" + "Serie: " + numeroSerie + ", color: " + color + ", linea: " + linea + ", marca: " + marca + ", modelo: " + modelo + ", persona: " + persona + ", listaPlacas: " + listaPlacas + ']';
     }
     
     

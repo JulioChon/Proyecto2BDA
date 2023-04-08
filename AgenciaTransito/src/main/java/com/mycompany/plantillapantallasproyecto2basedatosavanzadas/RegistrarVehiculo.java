@@ -6,11 +6,13 @@ package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.itson.DAO.VehiculosDAO;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
 import static org.itson.dominio.Tramite_.persona;
 import org.itson.dominio.Vehiculo;
+import utilidades.Validaciones;
 
 /**
  *
@@ -29,7 +31,40 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         this.setVisible(true);
         
     }
-
+    public boolean acreeditarCampos()
+    {
+        
+        if(Validaciones.validaCampoTexto(txtSerie.getText()) && Validaciones.validaCampoTexto(txtMarca.getText()) && Validaciones.validaCampoTexto(txtLinea.getText()) &&  Validaciones.validaCampoTexto(txtColor.getText())
+                &&  Validaciones.validaCampoTexto(txtModelo.getText())&& new VehiculosDAO().buscarVehiculo(txtSerie.getText()).isEmpty())
+        {
+         return true;
+        } else {
+            String mensaje = "Campo(s) invalido(s) [Formato(s) valido(s)]\n";
+            if (!Validaciones.validaCampoTexto(txtSerie.getText())) {
+                mensaje +=   "- Serie del vehiculo   [ABC-123]\n";
+            }
+            if (!Validaciones.validaCampoTexto(txtMarca.getText())) {
+                mensaje +=   "- Marca del vehiculo   [Honda]\n";
+            }
+            if (!Validaciones.validaCampoTexto(txtLinea.getText())) {
+                mensaje +=   "- Linea del vehiculo   [Civic]\n";
+            }
+            if (!Validaciones.validaCampoTexto(txtColor.getText())) {
+                mensaje +=   "- Color del vehiculo   [Negro]\n";
+            }
+            if (!Validaciones.validaCampoTexto(txtModelo.getText())) {
+                mensaje +=   "- Modelo del vehiculo  [2003]\n";
+            }
+            if (! new VehiculosDAO().buscarVehiculo(txtSerie.getText()).isEmpty()) {
+                mensaje +=   "- El vehiculo ya esta registrado\n";
+            }
+            JOptionPane.showMessageDialog(this, mensaje);
+            return false;
+        }
+        
+    
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,8 +288,15 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        Vehiculo vehiculo = new Vehiculo(txtSerie.getText(), txtSerie.getText(), txtSerie.getText(), txtSerie.getText(), txtSerie.getText(), persona, new LinkedList<>());
-        new VehiculosDAO().registrarVehiculo(vehiculo);
+        if(acreeditarCampos() )
+        {
+            
+            Vehiculo vehiculo = new Vehiculo(txtSerie.getText(), txtColor.getText(), txtLinea.getText(), txtMarca.getText(), txtModelo.getText(), persona, new LinkedList<>());
+            
+            new VehiculosDAO().registrarVehiculo(vehiculo);
+        }
+        
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

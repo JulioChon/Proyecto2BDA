@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import org.itson.dominio.TipoPlaca;
 import org.itson.dominio.Vehiculo;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-04-07T00:09:55", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-04-07T21:08:04", comments="EclipseLink-2.7.10.v20211216-rNA")
 @StaticMetamodel(Placa.class)
 public class Placa_ extends Tramite_ {
 
