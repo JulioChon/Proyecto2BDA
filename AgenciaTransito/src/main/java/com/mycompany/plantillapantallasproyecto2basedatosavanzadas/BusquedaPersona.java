@@ -62,8 +62,8 @@ public class BusquedaPersona extends javax.swing.JFrame {
         }
         if (dtFechaNacimiento.getDate() != null) {
             LocalDate seleccion = dtFechaNacimiento.getDate();
-            Calendar date = new GregorianCalendar(seleccion.getYear(),
-                    seleccion.getMonthValue(), seleccion.getDayOfYear());
+            Calendar date = new GregorianCalendar(dtFechaNacimiento.getDate().getYear(),
+                    dtFechaNacimiento.getDate().getMonthValue()-1, dtFechaNacimiento.getDate().getDayOfMonth());
             params.setFechaNacimiento(date);
             SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
             System.out.println("Hola");
@@ -260,10 +260,10 @@ public class BusquedaPersona extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Busqueda por Nombre");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);

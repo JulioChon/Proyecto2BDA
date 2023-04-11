@@ -86,10 +86,10 @@ public class PersonasDAO implements IPersonasDAO {
         }
         if (params.getFechaNacimiento() != null) {
             SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = new Date(params.getFechaNacimiento().getTime());
+            //Date fecha = new Date(params.getFechaNacimiento().get(Calendar), 0, 0);
             
-            System.out.println(params.getFechaNacimiento().getTime());
-            filtros.add(builder.equal(entidadPersona.get("fechaNacimiento"), fecha));
+            System.out.println(params.getFechaNacimiento().getTime() + "Esto");
+            filtros.add(builder.equal(entidadPersona.get("fechaNacimiento"), params.getFechaNacimiento()));
         }
 
         criteria = criteria.select(entidadPersona).where(
