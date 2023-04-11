@@ -47,13 +47,12 @@ public class Persona implements Serializable {
     @OneToMany(mappedBy = "Persona")
     private List<Tramite> listaTramites;
 
-    @OneToMany(mappedBy = "Persona")
-    private List<Vehiculo> listaVehiculos;
+
 
     public Persona() {
     }
 
-    public Persona(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, String telefono, List<Tramite> listaTramites, List<Vehiculo> listaVehiculos) {
+    public Persona(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, String telefono,List<Tramite> listaTramites) {
         this.rfc = rfc;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -61,7 +60,6 @@ public class Persona implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
         this.listaTramites = listaTramites;
-        this.listaVehiculos = listaVehiculos;
     }
 
     public Persona(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, String telefono) {
@@ -130,13 +128,6 @@ public class Persona implements Serializable {
         this.listaTramites = listaTramites;
     }
 
-    public List<Vehiculo> getListaVehiculos() {
-        return listaVehiculos;
-    }
-
-    public void setListaVehiculos(List<Vehiculo> listaVehiculos) {
-        this.listaVehiculos = listaVehiculos;
-    }
 
     @Override
     public int hashCode() {

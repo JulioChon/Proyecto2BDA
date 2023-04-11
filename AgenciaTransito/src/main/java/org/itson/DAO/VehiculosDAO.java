@@ -32,6 +32,18 @@ public class VehiculosDAO {
         entityManager.getTransaction().commit();
 
     }
+    public List<Vehiculo> buscarVehiculo()
+    {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        Root<Vehiculo> root = criteriaQuery.from(Vehiculo.class);
+        criteriaQuery.select(root);
+        Query query = entityManager.createQuery(criteriaQuery);
+        List<Vehiculo> listaResultados = query.getResultList();
+        return  listaResultados;
+    }
     public List<Vehiculo> buscarVehiculo(String numeroSerie)
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");

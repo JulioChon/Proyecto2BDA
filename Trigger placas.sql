@@ -18,7 +18,7 @@ DELIMITER $$
 CREATE PROCEDURE actualizar_licencias (IN p_costo DECIMAL(10,2), IN p_estado VARCHAR(20), IN p_fecha_expedicion DATE, IN p_tipoCosto VARCHAR(20), IN p_vigencia DATE, IN p_rfc VARCHAR(20))
 BEGIN
 
-UPDATE licencias SET estado = 'inactivo' WHERE rfc = p_rfc AND estado = 'activo';
+UPDATE licencias SET estado = 'Inactivo' WHERE rfc = p_rfc AND estado = 'Activo';
   
   INSERT INTO licencias (Costo, estado, fecha_expedicion, tipoCosto, vigencia, rfc)
   VALUES (p_costo, p_estado, p_fecha_expedicion, p_tipoCosto, p_vigencia, p_rfc);
@@ -38,7 +38,7 @@ CREATE PROCEDURE actualizar_placas(
 )
 BEGIN
   
-  UPDATE placas SET estado = 'inactivo'
+  UPDATE placas SET estado = 'Inactivo'
   WHERE numeroserie = p_numero_serie;
   
 

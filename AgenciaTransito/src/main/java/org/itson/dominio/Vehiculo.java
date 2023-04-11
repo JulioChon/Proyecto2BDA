@@ -41,9 +41,6 @@ public class Vehiculo implements Serializable {
     @Column(name = "modelo",nullable = false,length = 20)
     private String modelo;
     
-    @ManyToOne
-    @JoinColumn(name = "rfc",nullable = false)
-    private Persona persona;
     
     @OneToMany(mappedBy = "Vehiculo")
     private List<Placa> listaPlacas;
@@ -51,23 +48,21 @@ public class Vehiculo implements Serializable {
     public Vehiculo() {
     }
 
-    public Vehiculo(String numeroSerie, String color, String linea, String marca, String modelo, Persona persona, List<Placa> listaPlacas) {
+    public Vehiculo(String numeroSerie, String color, String linea, String marca, String modelo, List<Placa> listaPlacas) {
         this.numeroSerie = numeroSerie;
         this.color = color;
         this.linea = linea;
         this.marca = marca;
         this.modelo = modelo;
-        this.persona = persona;
         this.listaPlacas = listaPlacas;
     }
 
-    public Vehiculo(String numeroSerie, String color, String linea, String marca, String modelo, Persona persona) {
+    public Vehiculo(String numeroSerie, String color, String linea, String marca, String modelo) {
         this.numeroSerie = numeroSerie;
         this.color = color;
         this.linea = linea;
         this.marca = marca;
         this.modelo = modelo;
-        this.persona = persona;
     }
     
 
@@ -111,13 +106,7 @@ public class Vehiculo implements Serializable {
         this.modelo = modelo;
     }
 
-    public Persona getPersona() {
-        return persona;
-    }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
 
     public List<Placa> getListaLicencias() {
         return listaPlacas;
@@ -151,7 +140,7 @@ public class Vehiculo implements Serializable {
 
     @Override
     public String toString() {
-        return "Vehiculo[" + "Serie: " + numeroSerie + ", color: " + color + ", linea: " + linea + ", marca: " + marca + ", modelo: " + modelo + ", persona: " + persona + ", listaPlacas: " + listaPlacas + ']';
+        return "Vehiculo[" + "Serie: " + numeroSerie + ", color: " + color + ", linea: " + linea + ", marca: " + marca + ", modelo: " + modelo + ", listaPlacas: " + listaPlacas + ']';
     }
     
     

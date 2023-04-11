@@ -9,10 +9,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import org.itson.DAO.TramitesDAO;
+import org.itson.DAO.VehiculosDAO;
 import org.itson.dominio.Estado;
 import org.itson.dominio.Licencia;
 import org.itson.dominio.Persona;
 import org.itson.dominio.TipoLicencia;
+import utilidades.Validaciones;
 import utilidades.Ventana;
 
 /**
@@ -65,7 +67,27 @@ public class TramiteLicencia extends javax.swing.JFrame {
         this.dispose();
         new MenuInicio();
     }
-
+    public boolean acreeditarCampos()
+    {
+        
+        if(btgVigencia.getSelection() != null && btgDiscapacitado.getSelection() != null)
+        {
+         return true;
+        } else {
+            String mensaje = "Campo(s) invalido(s) [Formato(s) valido(s)]\n";
+            if (btgVigencia.getSelection() == null) {
+                mensaje +=   "- Seleccione vigencia [1/2/3]\n";
+            }
+            if (btgDiscapacitado.getSelection() == null) {
+                mensaje +=   "- Seleccione discapacidad [Si/No]\n";
+            }
+            JOptionPane.showMessageDialog(this, mensaje);
+            return false;
+        }
+        
+    
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -406,7 +428,11 @@ public class TramiteLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn1AnoActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-      this.creacionObjeto();
+      if(acreeditarCampos())
+      {
+        this.creacionObjeto();
+      }
+      
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

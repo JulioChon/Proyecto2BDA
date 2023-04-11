@@ -4,15 +4,24 @@
  */
 package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import org.itson.DAO.TramitesDAO;
 import org.itson.DAO.VehiculosDAO;
+import org.itson.dominio.Estado;
 import org.itson.dominio.Persona;
+import org.itson.dominio.Placa;
+import org.itson.dominio.TipoPlaca;
 import org.itson.dominio.Vehiculo;
+import utilidades.GeneradorClaves;
+import utilidades.Ventana;
 
 /**
  *
- * @author Zaurus
+ * @author ZaurusS
  */
 public class TramitePlacas extends javax.swing.JFrame {
     private Persona persona;
@@ -22,7 +31,7 @@ public class TramitePlacas extends javax.swing.JFrame {
      */
     public TramitePlacas(Persona persona) {
         this.persona = persona;
-        listaVehiculos = new VehiculosDAO().buscarVehiculo(persona);
+        listaVehiculos = new VehiculosDAO().buscarVehiculo();
         
         initComponents();
         this.setVisible(true);
@@ -33,6 +42,29 @@ public class TramitePlacas extends javax.swing.JFrame {
         DefaultComboBoxModel combo = new DefaultComboBoxModel();
         cbxVehiculos.setModel(combo);
         combo.addAll(listaVehiculos);
+    }
+    private Placa GenerarPlaca()
+    {
+        String serie;
+        do
+        {
+            serie = new GeneradorClaves().getRandomString(19);
+        }while(!new TramitesDAO().buscarPlacas(serie).isEmpty());
+        
+        GregorianCalendar fechaVencimiento = new GregorianCalendar();
+        GregorianCalendar fechaEntrega = new GregorianCalendar();
+        int costo = costo();
+        fechaEntrega.add(Calendar.HOUR, 2);
+        fechaVencimiento.add(Calendar.YEAR, 1);
+        return new Placa(serie, fechaEntrega, TipoPlaca.usado, (Vehiculo) cbxVehiculos.getSelectedItem(), Estado.Activo, costo, new GregorianCalendar(), fechaVencimiento, persona);
+    }
+    private int costo()
+    {
+        if(new TramitesDAO().buscarPlacas((Vehiculo) cbxVehiculos.getSelectedItem()).isEmpty())
+        {
+            return 1500;
+        }
+        return 1000;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,11 +82,10 @@ public class TramitePlacas extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         cbxVehiculos = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
+        btnRegistrarVehiculo = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        btnAceptar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,13 +114,13 @@ public class TramitePlacas extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(153, 0, 51));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Registrar vehiculo");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarVehiculo.setBackground(new java.awt.Color(153, 0, 51));
+        btnRegistrarVehiculo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnRegistrarVehiculo.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarVehiculo.setText("Registrar vehiculo");
+        btnRegistrarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnRegistrarVehiculoActionPerformed(evt);
             }
         });
 
@@ -99,7 +130,7 @@ public class TramitePlacas extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(0, 206, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(btnRegistrarVehiculo)
                 .addGap(187, 187, 187))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
@@ -111,7 +142,7 @@ public class TramitePlacas extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -145,29 +176,25 @@ public class TramitePlacas extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        jButton3.setBackground(new java.awt.Color(153, 0, 51));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Aceptar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setBackground(new java.awt.Color(153, 0, 51));
+        btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(153, 0, 51));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Cancelar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(153, 0, 51));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Costo: $1500");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,26 +205,20 @@ public class TramitePlacas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addGap(206, 206, 206))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(62, 62, 62)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -209,37 +230,51 @@ public class TramitePlacas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if((Vehiculo) cbxVehiculos.getSelectedItem() != null){
+            Placa placa = GenerarPlaca();
+            JOptionPane.showMessageDialog(this, "Costo: "+placa.getCosto()+"\nSerie: "+placa.getSerie()+"\nEntrega: "+placa.getFechaEntrega().getTime());
+            new TramitesDAO().registrarPlaca(placa);
+            new MenuInicio();
+            this.dispose();
+        }else
+        {
+            JOptionPane.showMessageDialog(this,"Primero selecciona un vehiculo");
+        }
+        
+        
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        new MenuInicio();
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void btnRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVehiculoActionPerformed
+        new RegistrarVehiculo(Ventana.TRAMITEPLACAS);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnRegistrarVehiculoActionPerformed
 
     private void cbxVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxVehiculosActionPerformed
-        
+
     }//GEN-LAST:event_cbxVehiculosActionPerformed
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnRegistrarVehiculo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxVehiculos;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

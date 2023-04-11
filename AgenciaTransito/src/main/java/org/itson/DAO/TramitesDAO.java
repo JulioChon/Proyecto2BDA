@@ -5,18 +5,29 @@
 package org.itson.DAO;
 
 import interfaces.ITramite;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.itson.dominio.Estado;
 import org.itson.dominio.Licencia;
+import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
 import org.itson.dominio.TipoLicencia;
+import org.itson.dominio.Vehiculo;
 
 /**
  *
@@ -81,6 +92,84 @@ public class TramitesDAO implements ITramite {
 
         storedProcedure.execute();
 
+    }    
+    public List<Placa> buscarPlacas(Persona persona)
+    {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        Root<Placa> root = criteriaQuery.from(Placa.class);
+        criteriaQuery.select(root);
+        
+        Predicate predicatePlaca = criteriaBuilder.equal(root.get("persona"), persona);
+        criteriaQuery.where(predicatePlaca);
+        Query query = entityManager.createQuery(criteriaQuery);
+        List<Placa> listaResultados = query.getResultList();
+        return  listaResultados;
+    }
+    public List<Placa> buscarPlacas(Vehiculo vehiculo)
+    {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        Root<Placa> root = criteriaQuery.from(Placa.class);
+        criteriaQuery.select(root);
+        
+        Predicate predicatePlaca = criteriaBuilder.equal(root.get("vehiculo"), vehiculo);
+        criteriaQuery.where(predicatePlaca);
+        Query query = entityManager.createQuery(criteriaQuery);
+        List<Placa> listaResultados = query.getResultList();
+        return  listaResultados;
+    }
+    public List<Placa> buscarPlacas(String serie)
+    {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        Root<Placa> root = criteriaQuery.from(Placa.class);
+        criteriaQuery.select(root);
+        
+        Predicate predicatePlaca = criteriaBuilder.equal(root.get("serie"), serie);
+        criteriaQuery.where(predicatePlaca);
+        Query query = entityManager.createQuery(criteriaQuery);
+        List<Placa> listaResultados = query.getResultList();
+        return  listaResultados;
+    }
+    public List<Licencia> buscarLicencias(Persona persona)
+    {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        Root<Licencia> root = criteriaQuery.from(Licencia.class);
+        criteriaQuery.select(root);
+        
+        Predicate predicateLicencia = criteriaBuilder.equal(root.get("persona"), persona);
+        criteriaQuery.where(predicateLicencia);
+        Query query = entityManager.createQuery(criteriaQuery);
+        List<Licencia> listaResultados = query.getResultList();
+        return  listaResultados;
+    }
+    public List<Licencia> buscarLicenciasVigentes(Persona persona)
+    {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        Root<Licencia> root = criteriaQuery.from(Licencia.class);
+        criteriaQuery.select(root);
+        
+        Predicate predicateLicenciaPersona = criteriaBuilder.equal(root.get("persona"), persona);
+        java.sql.Date fecha = new java.sql.Date(new Date().getTime());
+        Predicate predicateLicenciaVigente = criteriaBuilder.greaterThan(root.get("vigencia"), fecha);
+        Predicate predicateLicencia = criteriaBuilder.and(predicateLicenciaPersona, predicateLicenciaVigente);
+        criteriaQuery.where(predicateLicencia);
+        Query query = entityManager.createQuery(criteriaQuery);
+        List<Licencia> listaResultados = query.getResultList();
+        return  listaResultados;
     }
 
 }

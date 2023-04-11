@@ -22,6 +22,7 @@ org\itson\dominio\Tramite.class
 org\itson\DAO\VehiculosDAO.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$3.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$4.class
+utilidades\GeneradorClaves.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MostrarReporte$2.class
 org\itson\pruebas\pruebas.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas$2.class

@@ -5,24 +5,7 @@
 package org.itson.pruebas;
 
 import com.mycompany.plantillapantallasproyecto2basedatosavanzadas.MenuInicio;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.TimeZone;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import org.itson.DAO.ParametrosBusquedaPersonas;
-import org.itson.DAO.PersonasDAO;
-import org.itson.DAO.TramitesDAO;
-import org.itson.dominio.Automovil;
-import org.itson.dominio.Estado;
-import org.itson.dominio.Licencia;
-import org.itson.dominio.Persona;
-import org.itson.dominio.Placa;
-import org.itson.dominio.TipoLicencia;
-import org.itson.dominio.TipoPlaca;
+import java.time.LocalDateTime;
 
 
 /**
@@ -35,7 +18,8 @@ public class pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       MenuInicio menuInicion = new MenuInicio();
+        System.out.println(LocalDateTime.now());
+        MenuInicio menuInicion = new MenuInicio();
 //       PersonasDAO personasDAO = new PersonasDAO();
 //       ParametrosBusquedaPersonas params = new ParametrosBusquedaPersonas();
 //       params.setRfc("RAMC891027GA");

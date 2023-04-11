@@ -13,19 +13,19 @@ import org.itson.dominio.Placa;
 import static org.itson.dominio.Tramite_.persona;
 import org.itson.dominio.Vehiculo;
 import utilidades.Validaciones;
+import utilidades.Ventana;
 
 /**
  *
  * @author Zaurus
  */
 public class RegistrarVehiculo extends javax.swing.JFrame {
-
+    private Ventana ventanaSiguiente;
     /**
      * Creates new form TramiteLicencia
      */
-    private Persona persona;
-    public RegistrarVehiculo(Persona persona) {
-        this.persona = persona;
+    public RegistrarVehiculo(Ventana ventanaSiguiente) {
+        this.ventanaSiguiente = ventanaSiguiente;
         initComponents();
         
         this.setVisible(true);
@@ -291,16 +291,39 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         if(acreeditarCampos() )
         {
             
-            Vehiculo vehiculo = new Vehiculo(txtSerie.getText(), txtColor.getText(), txtLinea.getText(), txtMarca.getText(), txtModelo.getText(), persona, new LinkedList<>());
+            Vehiculo vehiculo = new Vehiculo(txtSerie.getText(), txtColor.getText(), txtLinea.getText(), txtMarca.getText(), txtModelo.getText(), new LinkedList<>());
             
             new VehiculosDAO().registrarVehiculo(vehiculo);
+            if(ventanaSiguiente == Ventana.TRAMITEPLACAS)
+            {
+                
+                new BusquedaPersona(ventanaSiguiente);
+                this.dispose();
+            }
+            if(ventanaSiguiente == Ventana.MENU)
+            {
+                
+                new MenuInicio();
+                this.dispose();
+            }
         }
         
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        if(ventanaSiguiente == Ventana.TRAMITEPLACAS)
+            {
+                
+                new BusquedaPersona(ventanaSiguiente);
+                this.dispose();
+            }
+            if(ventanaSiguiente == Ventana.MENU)
+            {
+                
+                new MenuInicio();
+                this.dispose();
+            }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSerieActionPerformed
