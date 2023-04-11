@@ -5,6 +5,8 @@
 package org.itson.DAO;
 
 import interfaces.IPersonasDAO;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -83,12 +85,15 @@ public class PersonasDAO implements IPersonasDAO {
 
         }
         if (params.getFechaNacimiento() != null) {
-            java.sql.Date fecha = new java.sql.Date(params.getFechaNacimiento().getTime());
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = new Date(params.getFechaNacimiento().getTime());
+            
+            System.out.println(params.getFechaNacimiento().getTime());
             filtros.add(builder.equal(entidadPersona.get("fechaNacimiento"), fecha));
         }
 
         criteria = criteria.select(entidadPersona).where(
-                builder.and((filtros.toArray(new Predicate[filtros.size()]))));
+                builder.or((filtros.toArray(new Predicate[filtros.size()]))));
         TypedQuery<Persona> query = entityManager.createQuery(criteria);
 
         List<Persona> personas = query.getResultList();

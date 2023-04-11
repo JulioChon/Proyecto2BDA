@@ -8,9 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.itson.DAO.VehiculosDAO;
+import org.itson.dominio.Automovil;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
-import static org.itson.dominio.Tramite_.persona;
 import org.itson.dominio.Vehiculo;
 import utilidades.Validaciones;
 import utilidades.Ventana;
@@ -104,18 +104,8 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         lblSerie.setText("Serie");
 
         txtSerie.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtSerie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSerieActionPerformed(evt);
-            }
-        });
 
         txtMarca.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMarcaActionPerformed(evt);
-            }
-        });
 
         lblMarca.setBackground(new java.awt.Color(204, 204, 0));
         lblMarca.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
@@ -123,11 +113,6 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         lblMarca.setText("Marca");
 
         txtLinea.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtLinea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLineaActionPerformed(evt);
-            }
-        });
 
         lblLinea.setBackground(new java.awt.Color(204, 204, 0));
         lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
@@ -135,11 +120,6 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         lblLinea.setText("Linea");
 
         txtColor.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtColor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtColorActionPerformed(evt);
-            }
-        });
 
         lblColor.setBackground(new java.awt.Color(204, 204, 0));
         lblColor.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
@@ -192,11 +172,6 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         });
 
         txtModelo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtModelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtModeloActionPerformed(evt);
-            }
-        });
 
         lblModelo.setBackground(new java.awt.Color(204, 204, 0));
         lblModelo.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
@@ -291,9 +266,9 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         if(acreeditarCampos() )
         {
             
-            Vehiculo vehiculo = new Vehiculo(txtSerie.getText(), txtColor.getText(), txtLinea.getText(), txtMarca.getText(), txtModelo.getText(), new LinkedList<>());
+            Automovil automovil = new Automovil(txtSerie.getText(), txtColor.getText(), txtLinea.getText(), txtMarca.getText(), txtModelo.getText());
             
-            new VehiculosDAO().registrarVehiculo(vehiculo);
+            new VehiculosDAO().registrarAutomovil(automovil);
             if(ventanaSiguiente == Ventana.TRAMITEPLACAS)
             {
                 
@@ -326,54 +301,14 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSerieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSerieActionPerformed
-
-    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMarcaActionPerformed
-
-    private void txtLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLineaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLineaActionPerformed
-
-    private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColorActionPerformed
-
-    private void txtModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModeloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtModeloActionPerformed
-
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblColor;
     private javax.swing.JLabel lblLinea;
@@ -381,16 +316,6 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblSerie;
     private javax.swing.JTextField txtColor;
-    private javax.swing.JTextField txtInformacionPersona;
-    private javax.swing.JTextField txtInformacionPersona1;
-    private javax.swing.JTextField txtInformacionPersona2;
-    private javax.swing.JTextField txtInformacionPersona3;
-    private javax.swing.JTextField txtInformacionPersona4;
-    private javax.swing.JTextField txtInformacionPersona5;
-    private javax.swing.JTextField txtInformacionPersona6;
-    private javax.swing.JTextField txtInformacionPersona7;
-    private javax.swing.JTextField txtInformacionPersona8;
-    private javax.swing.JTextField txtInformacionPersona9;
     private javax.swing.JTextField txtLinea;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;

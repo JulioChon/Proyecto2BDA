@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.itson.dominio.Automovil;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Vehiculo;
 
@@ -21,57 +22,57 @@ import org.itson.dominio.Vehiculo;
  * @author Zaurus
  */
 public class VehiculosDAO {
-    public void registrarVehiculo(Vehiculo vehiculo) {
+    public void registrarAutomovil(Automovil automovil) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        entityManager.persist(vehiculo);
+        entityManager.persist(automovil);
 
         entityManager.getTransaction().commit();
 
     }
-    public List<Vehiculo> buscarVehiculo()
+    public List<Automovil> buscarVehiculo()
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
-        Root<Vehiculo> root = criteriaQuery.from(Vehiculo.class);
+        Root<Automovil> root = criteriaQuery.from(Automovil.class);
         criteriaQuery.select(root);
         Query query = entityManager.createQuery(criteriaQuery);
-        List<Vehiculo> listaResultados = query.getResultList();
+        List<Automovil> listaResultados = query.getResultList();
         return  listaResultados;
     }
-    public List<Vehiculo> buscarVehiculo(String numeroSerie)
+    public List<Automovil> buscarVehiculo(String numeroSerie)
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
-        Root<Vehiculo> root = criteriaQuery.from(Vehiculo.class);
+        Root<Automovil> root = criteriaQuery.from(Automovil.class);
         criteriaQuery.select(root);
         
         Predicate predicateNumeroSerie = criteriaBuilder.equal(root.get("numeroSerie"), numeroSerie);
         criteriaQuery.where(predicateNumeroSerie);
         Query query = entityManager.createQuery(criteriaQuery);
-        List<Vehiculo> listaResultados = query.getResultList();
+        List<Automovil> listaResultados = query.getResultList();
         return  listaResultados;
     }
-    public List<Vehiculo> buscarVehiculo(Persona persona)
+    public List<Automovil> buscarVehiculo(Persona persona)
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
-        Root<Vehiculo> root = criteriaQuery.from(Vehiculo.class);
+        Root<Automovil> root = criteriaQuery.from(Automovil.class);
         criteriaQuery.select(root);
         
         Predicate predicateNumeroSerie = criteriaBuilder.equal(root.get("persona"), persona);
         criteriaQuery.where(predicateNumeroSerie);
         Query query = entityManager.createQuery(criteriaQuery);
-        List<Vehiculo> listaResultados = query.getResultList();
+        List<Automovil> listaResultados = query.getResultList();
         return  listaResultados;
     }
 }

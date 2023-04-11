@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.itson.DAO.TramitesDAO;
 import org.itson.DAO.VehiculosDAO;
+import org.itson.dominio.Automovil;
 import org.itson.dominio.Estado;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
@@ -25,13 +26,13 @@ import utilidades.Ventana;
  */
 public class TramitePlacas extends javax.swing.JFrame {
     private Persona persona;
-    private List<Vehiculo> listaVehiculos;
+    private List<Automovil> listaAutomoviles;
     /**
      * Creates new form TramiteLicencia
      */
     public TramitePlacas(Persona persona) {
         this.persona = persona;
-        listaVehiculos = new VehiculosDAO().buscarVehiculo();
+        listaAutomoviles = new VehiculosDAO().buscarVehiculo();
         
         initComponents();
         this.setVisible(true);
@@ -41,7 +42,7 @@ public class TramitePlacas extends javax.swing.JFrame {
     {
         DefaultComboBoxModel combo = new DefaultComboBoxModel();
         cbxVehiculos.setModel(combo);
-        combo.addAll(listaVehiculos);
+        combo.addAll(listaAutomoviles);
     }
     private Placa GenerarPlaca()
     {

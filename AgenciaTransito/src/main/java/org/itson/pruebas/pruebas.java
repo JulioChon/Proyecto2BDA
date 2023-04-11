@@ -6,6 +6,11 @@ package org.itson.pruebas;
 
 import com.mycompany.plantillapantallasproyecto2basedatosavanzadas.MenuInicio;
 import java.time.LocalDateTime;
+import java.util.GregorianCalendar;
+import java.util.List;
+import org.itson.DAO.ParametrosBusquedaPersonas;
+import org.itson.DAO.PersonasDAO;
+import org.itson.dominio.Persona;
 
 
 /**
@@ -22,19 +27,19 @@ public class pruebas {
         MenuInicio menuInicion = new MenuInicio();
 //       PersonasDAO personasDAO = new PersonasDAO();
 //       ParametrosBusquedaPersonas params = new ParametrosBusquedaPersonas();
-//       params.setRfc("RAMC891027GA");
+//       params.setRfc("BAFJ701213SB1");
 //       //params.setNombre("Carlos");
-//       params.setFechaNacimiento(new GregorianCalendar(1989,10-1,27).getTime());
+//       //params.setFechaNacimiento(new GregorianCalendar(1989,10-1,27).getTime());
 //       List<Persona> personas = personasDAO.buscar(params);
 //        for (Persona persona : personas) {
-//            System.out.println(persona.getNombre());   
+//            System.out.println(persona.getListaTramites());   
 //        }
-//        TramitesDAO tramitesDAO = new TramitesDAO();
-////        Licencia licencia = new Licencia(TipoLicencia.normal, Estado.Activo, 1100, new GregorianCalendar(1989,10-1,27), new GregorianCalendar(1989,10-1,27), personas.get(0));
-////        tramitesDAO.registrarLicencia(licencia);
-//          Automovil automovil = new Automovil("1", "rojo", "azul", "Azul", "Azul", personas.get(0));
-//          Placa placa = new Placa(new GregorianCalendar(1989,10-1,27), TipoPlaca.usado, Estado.Activo, 0, new GregorianCalendar(1989,10-1,27), new GregorianCalendar(1989,10-1,27), personas.get(0), automovil);
-//       tramitesDAO.registrarPlaca(placa);
+////        TramitesDAO tramitesDAO = new TramitesDAO();
+//////        Licencia licencia = new Licencia(TipoLicencia.normal, Estado.Activo, 1100, new GregorianCalendar(1989,10-1,27), new GregorianCalendar(1989,10-1,27), personas.get(0));
+//////        tramitesDAO.registrarLicencia(licencia);
+////          Automovil automovil = new Automovil("1", "rojo", "azul", "Azul", "Azul", personas.get(0));
+////          Placa placa = new Placa(new GregorianCalendar(1989,10-1,27), TipoPlaca.usado, Estado.Activo, 0, new GregorianCalendar(1989,10-1,27), new GregorianCalendar(1989,10-1,27), personas.get(0), automovil);
+////       tramitesDAO.registrarPlaca(placa);
     }
     
 }

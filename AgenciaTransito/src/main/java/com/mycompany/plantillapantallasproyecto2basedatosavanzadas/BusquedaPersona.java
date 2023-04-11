@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,6 +39,7 @@ public class BusquedaPersona extends javax.swing.JFrame {
     private static final Logger LOG = Logger.getLogger(Persona.class.getName());
     private Ventana ventanaSiguiente; // 1 = tramite licencia, 2 = tramite placas, 3 = Historial tramites
     private Persona persona;
+
     /**
      * Creates new form TramiteLicencia
      */
@@ -59,9 +61,13 @@ public class BusquedaPersona extends javax.swing.JFrame {
             params.setRfc(txtRFC.getText());
         }
         if (dtFechaNacimiento.getDate() != null) {
-            Date date = new GregorianCalendar(dtFechaNacimiento.getDate().getYear(),
-                    dtFechaNacimiento.getDate().getMonthValue() - 1, dtFechaNacimiento.getDate().getDayOfYear()).getTime();
+            LocalDate seleccion = dtFechaNacimiento.getDate();
+            Calendar date = new GregorianCalendar(seleccion.getYear(),
+                    seleccion.getMonthValue(), seleccion.getDayOfYear());
             params.setFechaNacimiento(date);
+            SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+            System.out.println("Hola");
+            System.out.println(formateador.format(date.getTime()));
         }
     }
 
@@ -107,7 +113,7 @@ public class BusquedaPersona extends javax.swing.JFrame {
         Calendar calendario = Calendar.getInstance();
         calendario.setTime(fecha);
 
-         persona = new Persona(valoresFila.get(0).toString(), valoresFila.get(1).toString(), valoresFila.get(2).toString(),
+        persona = new Persona(valoresFila.get(0).toString(), valoresFila.get(1).toString(), valoresFila.get(2).toString(),
                 valoresFila.get(3).toString(), calendario, valoresFila.get(5).toString());
         return persona;
     }
@@ -120,28 +126,24 @@ public class BusquedaPersona extends javax.swing.JFrame {
             valoresFila.add(valor);
         }
         this.creacionPersona(valoresFila);
-        if(ventanaSiguiente == Ventana.TRAMITELICENCIAS){
+        if (ventanaSiguiente == Ventana.TRAMITELICENCIAS) {
             this.dispose();
             new TramiteLicencia(persona);
-           
-        }
-        if(ventanaSiguiente == Ventana.TRAMITEPLACAS){
-            
-            if(!new TramitesDAO().buscarLicenciasVigentes(persona).isEmpty())
-            {
-                this.dispose();
-                new TramitePlacas(persona);
-            }else
-            {
-               JOptionPane.showMessageDialog(this, persona.getNombre()+" no tiene una licencia");
-            }
-            
 
         }
-        if(ventanaSiguiente == Ventana.REGISTROVEHICULOS){
-            
+        if (ventanaSiguiente == Ventana.TRAMITEPLACAS) {
+
+            if (!new TramitesDAO().buscarLicenciasVigentes(persona).isEmpty()) {
+                this.dispose();
+                new TramitePlacas(persona);
+            } else {
+                JOptionPane.showMessageDialog(this, persona.getNombre() + " no tiene una licencia");
+            }
+
         }
-        
+        if (ventanaSiguiente == Ventana.REGISTROVEHICULOS) {
+
+        }
 
     }
 
@@ -434,7 +436,7 @@ public class BusquedaPersona extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 583, Short.MAX_VALUE))
                 .addGap(0, 66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
