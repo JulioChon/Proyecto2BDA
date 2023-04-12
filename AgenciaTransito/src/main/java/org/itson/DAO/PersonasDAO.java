@@ -7,6 +7,7 @@ package org.itson.DAO;
 import interfaces.IPersonasDAO;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -77,27 +78,49 @@ public class PersonasDAO implements IPersonasDAO {
         Root<Persona> entidadPersona = criteria.from(Persona.class);
         List<Predicate> filtros = new LinkedList<>();
 
-        if (params.getNombre() != null) {
-            filtros.add(builder.like(entidadPersona.get("nombre"), "%" + params.getNombre() + "%"));
-        }
-        if (params.getRfc() != null) {
-            filtros.add(builder.like(entidadPersona.get("rfc"), "%" + params.getRfc() + "%"));
+        if (params != null) {
+            if (params.getRfc() != null) {
+                filtros.add(builder.like(entidadPersona.get("rfc"), "%" + params.getRfc() + "%"));
 
-        }
-        if (params.getFechaNacimiento() != null) {
-            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-            //Date fecha = new Date(params.getFechaNacimiento().get(Calendar), 0, 0);
-            
-            System.out.println(params.getFechaNacimiento().getTime() + "Esto");
-            filtros.add(builder.equal(entidadPersona.get("fechaNacimiento"), params.getFechaNacimiento()));
+            }
+            if (params.getFechaNacimiento() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.equal(entidadPersona.get("fechaNacimiento"), params.getFechaNacimiento()));
+            }
         }
 
-        criteria = criteria.select(entidadPersona).where(
-                builder.or((filtros.toArray(new Predicate[filtros.size()]))));
+        if (filtros.isEmpty()) {
+            criteria = criteria.select(entidadPersona);
+        } else {
+            criteria = criteria.select(entidadPersona).where(
+                    builder.or((filtros.toArray(new Predicate[filtros.size()]))));
+        }
+
         TypedQuery<Persona> query = entityManager.createQuery(criteria);
 
         List<Persona> personas = query.getResultList();
         return personas;
+
+    }
+
+    @Override
+    public List<Persona> buscarNombre(String nombre) {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        List<Persona> personas = entityManager.createQuery("SELECT p FROM Persona p", Persona.class).getResultList();
+        List<Persona> coincidencia = new ArrayList<>();
+        entityManager.getTransaction().commit();
+        String nombreCompleto = null;
+        for (Persona persona : personas) {
+            nombreCompleto = persona.getNombre() + " "+ persona.getApellidoPaterno() + " "+persona.getApellidoPaterno();
+            if (nombreCompleto.toUpperCase().contains(nombre.toUpperCase())) {
+                coincidencia.add(persona);
+            }
+        }
+        return coincidencia;
 
     }
 

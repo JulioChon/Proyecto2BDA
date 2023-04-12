@@ -26,13 +26,16 @@ public class Persona implements Serializable {
     @Column(name ="rfc",nullable = false, length = 13)
     private String rfc;
     
-    @Column(name = "nombre",nullable = false, length = 20)
+    @Column(name = "nombre",nullable = false, length = 200)
+    @Convert(converter = AESEncript.class)
     private String nombre;
     
-    @Column(name = "apellido_Paterno",nullable = false, length = 20)
+    @Column(name = "apellido_Paterno",nullable = false, length = 200)
+    @Convert(converter = AESEncript.class)
     private String apellidoPaterno;
     
-    @Column(name = "apellido_Materno",nullable = false,length = 20)
+    @Column(name = "apellido_Materno",nullable = false,length = 200)
+    @Convert(converter = AESEncript.class)
     private String apellidoMaterno;
     
     @Column(name = "fecha_nacimiento", nullable = false)

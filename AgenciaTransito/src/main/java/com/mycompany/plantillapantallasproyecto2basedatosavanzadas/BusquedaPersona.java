@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -39,6 +41,7 @@ public class BusquedaPersona extends javax.swing.JFrame {
     private static final Logger LOG = Logger.getLogger(Persona.class.getName());
     private Ventana ventanaSiguiente; // 1 = tramite licencia, 2 = tramite placas, 3 = Historial tramites
     private Persona persona;
+    private String nombreCompleto;
 
     /**
      * Creates new form TramiteLicencia
@@ -46,35 +49,59 @@ public class BusquedaPersona extends javax.swing.JFrame {
     public BusquedaPersona(Ventana ventanaSiguiente) {
         initComponents();
         this.setVisible(true);
-        params = new ParametrosBusquedaPersonas();
+        params = null;
         this.ventanaSiguiente = ventanaSiguiente;
         this.persona = new Persona();
+        this.nombreCompleto = null;
     }
 
     public void extraerDatos() {
-        params = new ParametrosBusquedaPersonas();
+
         if (!txtNombre.getText().isEmpty()) {
-            params.setNombre(txtNombre.getText());
+            nombreCompleto = txtNombre.getText();
 
         }
-        if (!txtRFC.getText().isEmpty()) {
-            params.setRfc(txtRFC.getText());
-        }
-        if (dtFechaNacimiento.getDate() != null) {
-            LocalDate seleccion = dtFechaNacimiento.getDate();
-            Calendar date = new GregorianCalendar(dtFechaNacimiento.getDate().getYear(),
-                    dtFechaNacimiento.getDate().getMonthValue()-1, dtFechaNacimiento.getDate().getDayOfMonth());
-            params.setFechaNacimiento(date);
-            SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
-            System.out.println("Hola");
-            System.out.println(formateador.format(date.getTime()));
+ 
+        if (!txtRFC.getText().isEmpty() || dtFechaNacimiento.getDate() != null) {
+            params = new ParametrosBusquedaPersonas();
+            
+            if (!txtRFC.getText().isEmpty()) {
+                params.setRfc(txtRFC.getText());
+            }
+            if (dtFechaNacimiento.getDate() != null) {
+                LocalDate seleccion = dtFechaNacimiento.getDate();
+                Calendar date = new GregorianCalendar(dtFechaNacimiento.getDate().getYear(),
+                        dtFechaNacimiento.getDate().getMonthValue() - 1, dtFechaNacimiento.getDate().getDayOfMonth());
+                params.setFechaNacimiento(date);
+            }
         }
     }
 
-    public void llenarTabla() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    public List<Persona> listaPersonas() {
         PersonasDAO personasDAO = new PersonasDAO();
-        List<Persona> personas = personasDAO.buscar(params);
+        List<Persona> lista2 = null;
+        List<Persona> lista1 = personasDAO.buscar(params); // Obtener con rfc y fechaNacimiento
+        if (nombreCompleto!=null) {
+            lista2 = personasDAO.buscarNombre(nombreCompleto); // Obtener la segunda lista de algún lugar
+        }
+
+        Set<Persona> conjunto = null;
+        if (nombreCompleto == null) {
+            conjunto = new HashSet<>(lista1);
+        } else if (params == null) {
+            conjunto = new HashSet<>(lista2);
+        } else {
+            conjunto = new HashSet<>(lista1);
+            conjunto.addAll(lista2);
+        }
+
+        List<Persona> listaUnica = new ArrayList<>(conjunto);
+        return listaUnica;
+    }
+
+    public void llenarTabla() {
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        List<Persona> personas = this.listaPersonas();
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblPersonas.getModel();
         modeloTabla.setRowCount(0);
         for (Persona persona : personas) {
@@ -83,7 +110,7 @@ public class BusquedaPersona extends javax.swing.JFrame {
                 persona.getNombre(),
                 persona.getApellidoPaterno(),
                 persona.getApellidoMaterno(),
-                formatter.format(persona.getFechaNacimiento().getTime()),
+                formateador.format(persona.getFechaNacimiento().getTime()),
                 persona.getTelefono()
             };
             modeloTabla.addRow(fila);
@@ -141,8 +168,9 @@ public class BusquedaPersona extends javax.swing.JFrame {
             }
 
         }
-        if (ventanaSiguiente == Ventana.REGISTROVEHICULOS) {
-
+        if (ventanaSiguiente == Ventana.HISTORIALTRAMITES) {
+            this.dispose();
+            new HistorialTramitesMostrar(persona);
         }
 
     }
@@ -385,10 +413,7 @@ public class BusquedaPersona extends javax.swing.JFrame {
 
         tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "RFC", "Nombre", "Apellido Paterno", "Apellido Materno ", "Fecha Nacimiento", "Telefono", ""

@@ -5,6 +5,7 @@
 package org.itson.dominio;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -92,8 +93,11 @@ public class Placa extends Tramite implements Serializable {
 
     @Override
     public String toString() {
-        return "Placa{" + "serie=" + serie + ", fechaEntrega=" + fechaEntrega + ", tipoPlaca=" + tipoPlaca + ", vehiculo=" + vehiculo + '}';
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        return  super.toString() + "serie=" + serie + ", fechaEntrega=" + formateador.format(fechaEntrega.getTime()) + ", tipoPlaca=" + tipoPlaca ;
     }
+
+   
     
     
     

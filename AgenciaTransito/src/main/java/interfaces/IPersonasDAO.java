@@ -17,4 +17,5 @@ public interface IPersonasDAO {
     
     void agregarPersonas();
     List<Persona> buscar(ParametrosBusquedaPersonas params);
+    List<Persona> buscarNombre(String nombreCompleto);
 }

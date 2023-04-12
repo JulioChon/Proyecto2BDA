@@ -13,15 +13,13 @@ import java.util.Date;
  */
 public class ParametrosBusquedaPersonas {
     private String rfc;
-    private String nombre;
     private Calendar fechaNacimiento;
 
     public ParametrosBusquedaPersonas() {
     }
 
-    public ParametrosBusquedaPersonas(String rfc, String nombre, Calendar fechaNacimiento) {
+    public ParametrosBusquedaPersonas(String rfc, Calendar fechaNacimiento) {
         this.rfc = rfc;
-        this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -33,13 +31,6 @@ public class ParametrosBusquedaPersonas {
         this.rfc = rfc;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public Calendar getFechaNacimiento() {
         return fechaNacimiento;

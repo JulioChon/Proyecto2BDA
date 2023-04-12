@@ -5,6 +5,7 @@
 package org.itson.dominio;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -140,7 +141,10 @@ public class Tramite implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itson.dominio.Tramite[ id=" + id + " ]";
+         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        return "id=" + id + ", estado=" + estado + ", costo=" + costo + ", fechaExpedicion=" + formateador.format(fechaExpedicion.getTime()) + ", vigencia=" + formateador.format(vigencia.getTime());
     }
+
+    
     
 }

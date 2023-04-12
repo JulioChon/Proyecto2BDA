@@ -10,10 +10,12 @@ com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMos
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas$1.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona.class
 org\itson\DAO\TramitesDAO.class
+com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar$7.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar.class
 org\itson\dominio\Automovil_.class
 org\itson\dominio\Placa_.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona$4.class
+com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar$4.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$2.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$4.class
 org\itson\dominio\Placa.class
@@ -21,6 +23,7 @@ org\itson\dominio\Tramite.class
 org\itson\DAO\VehiculosDAO.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$3.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$4.class
+org\itson\dominio\AESEncript.class
 utilidades\GeneradorClaves.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MostrarReporte$2.class
 org\itson\pruebas\pruebas.class
@@ -40,6 +43,7 @@ com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona$3.cl
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas$3.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$3.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MostrarReporte$1.class
+com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar$6.class
 utilidades\Validaciones.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo$1.class
 org\itson\DAO\ParametrosBusquedaPersonas.class
@@ -49,6 +53,7 @@ botonesTabla\seleccionadorBoton.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$5.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$4.class
 org\itson\dominio\Persona_.class
+com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar$5.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona$2.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$2.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia.class

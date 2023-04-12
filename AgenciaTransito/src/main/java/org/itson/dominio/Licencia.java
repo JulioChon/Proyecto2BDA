@@ -45,8 +45,10 @@ public class Licencia extends Tramite implements Serializable {
 
     @Override
     public String toString() {
-        return "Licencia{" + "tipoCosto=" + tipoCosto + '}';
+        return super.toString() + "tipoCosto=" + tipoCosto ;
     }
+
+   
     
     
    
