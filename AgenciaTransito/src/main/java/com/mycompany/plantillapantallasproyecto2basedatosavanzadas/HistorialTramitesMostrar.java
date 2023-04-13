@@ -17,6 +17,10 @@ import org.itson.DAO.TramitesDAO;
 import org.itson.dominio.Licencia;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
+import org.itson.dominio.Tramite;
+import utilidades.TipoTramite;
+import static utilidades.TipoTramite.Licencias;
+import static utilidades.TipoTramite.Placas;
 import utilidades.Ventana;
 
 /**
@@ -25,12 +29,14 @@ import utilidades.Ventana;
  */
 public class HistorialTramitesMostrar extends javax.swing.JFrame {
 
-    
     private Persona persona;
-     private List<Placa> listaPlacas;
-     private List<Licencia> listaLicencias ;
+    private List<Placa> listaPlacas;
+    private List<Licencia> listaLicencias;
+
     /**
-     * Creates new form TramiteLicencia
+     * Metodo constructor que inicializa los atributos de la clase
+     *
+     * @param persona persona a la cual se le buscaran sus tramites
      */
     public HistorialTramitesMostrar(Persona persona) {
         initComponents();
@@ -41,70 +47,78 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
         String informacion = persona.getRfc() + " " + persona.getNombre() + " "
                 + persona.getApellidoPaterno() + " " + persona.getApellidoMaterno();
         this.jLbPersona.setText(informacion);
+        this.llenarTabla();
     }
-    public void llenarLicenciasTabla(){
+
+    /**
+     * Llena la tabla del historial de trámites con la información de las
+     * licencias y placas realizadas por la persona. Obtiene la lista de
+     * licencias y placas realizadas por la persona a través del objeto
+     * TramitesDAO. Luego, crea una lista de Tramites que contiene tanto las
+     * licencias como las placas. A partir de esta lista, crea las filas que se
+     * agregan a la tabla del historial de trámites y las añade al modelo de la
+     * tabla. Además, agrega un renderizador y un editor de botón a la columna
+     * "Seleccionar" y asigna un MouseListener a la tabla para detectar cuando
+     * se hace clic en el botón "Seleccionar".
+     */
+    public void llenarTabla() {
         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
         TramitesDAO tramitesDAO = new TramitesDAO();
         listaLicencias = tramitesDAO.buscarLicencias(persona);
-        DefaultTableModel modeloTabla = (DefaultTableModel) this.tlbHistorial.getModel();
-        modeloTabla.setRowCount(0);
-        for (Licencia licencia : listaLicencias) {
+        listaPlacas = tramitesDAO.buscarPlacas(persona);
+        List<Tramite> listaTramites = new ArrayList<>();
+        listaTramites.addAll(listaLicencias);
+        listaTramites.addAll(listaPlacas);
+        DefaultTableModel modeloLicencias = (DefaultTableModel) this.tlbHistorial.getModel();
+        modeloLicencias.setRowCount(0);
+        for (Tramite licencia : listaTramites) {
             Object[] fila = {
                 licencia.getId(),
                 licencia.getEstado(),
                 formateador.format(licencia.getFechaExpedicion().getTime()),
-                formateador.format(licencia.getVigencia().getTime()) 
+                formateador.format(licencia.getVigencia().getTime()),
+                licencia.getTipoTramite(),
+                "Seleccionar"
             };
-            modeloTabla.addRow(fila);
+            modeloLicencias.addRow(fila);
         }
-        tlbHistorial.getColumnModel().getColumn(4).setCellRenderer(new botonRenderizador());
-        tlbHistorial.getColumnModel().getColumn(4).setCellEditor(new seleccionadorBoton());
+        tlbHistorial.getColumnModel().getColumn(5).setCellRenderer(new botonRenderizador());
+        tlbHistorial.getColumnModel().getColumn(5).setCellEditor(new seleccionadorBoton());
         tlbHistorial.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                int bandera =1;
                 int columna = tlbHistorial.getColumnModel().getColumnIndexAtX(e.getX());
                 int fila = e.getY() / tlbHistorial.getRowHeight();
-                if (columna == 4 && fila < tlbHistorial.getRowCount() && fila >= 0) {
-                    botonActionPerformed(fila,1);
+                if (columna == 5 && fila < tlbHistorial.getRowCount() && fila >= 0) {
+
+                    botonActionPerformed(fila);
+
                 }
             }
         });
+
     }
-    public void llenarPlacasTabla(){
-        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
-        TramitesDAO tramitesDAO = new TramitesDAO();
-        listaPlacas = tramitesDAO.buscarPlacas(persona);
-        DefaultTableModel modeloTabla = (DefaultTableModel) this.tlbHistorial.getModel();
-        modeloTabla.setRowCount(0);
-        for (Placa placas : listaPlacas) {
-            Object[] fila = {
-                placas.getId(),
-                placas.getEstado(),
-                formateador.format(placas.getFechaExpedicion().getTime()),
-                formateador.format(placas.getVigencia().getTime()) 
-            };
-            modeloTabla.addRow(fila);
-        }
-        tlbHistorial.getColumnModel().getColumn(4).setCellRenderer(new botonRenderizador());
-        tlbHistorial.getColumnModel().getColumn(4).setCellEditor(new seleccionadorBoton());
-        tlbHistorial.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                int bandera =0;
-                int columna = tlbHistorial.getColumnModel().getColumnIndexAtX(e.getX());
-                int fila = e.getY() / tlbHistorial.getRowHeight();
-                if (columna == 4 && fila < tlbHistorial.getRowCount() && fila >= 0) {
-                    botonActionPerformed(fila,bandera);
-                }
-            }
-        });
+
+    /**
+     * Metodo que lanza un mensaje con la informacion del tramite de placa
+     * seleccionado
+     *
+     * @param placa placa la cual se desea saber toda su informacion
+     */
+    public void mostrarMensajeInformacionPlaca(Placa placa) {
+        JOptionPane.showMessageDialog(this, placa);
     }
-     public void mostrarMensajeInformacionPlaca(Placa placa) {
-        JOptionPane.showMessageDialog(this,  placa);
-    }
-      public void mostrarMensajeInformacionLicencia(Licencia licencia) {
+
+    /**
+     * Metodo que lanza un mensaje con la informacion del tramite de licencia
+     * seleccionado
+     *
+     * @param licencia licencia la cual se desea saber toda su informacion
+     */
+    public void mostrarMensajeInformacionLicencia(Licencia licencia) {
+
         JOptionPane.showMessageDialog(this, licencia);
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,11 +134,8 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLbPersona = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jrbLicencia = new javax.swing.JRadioButton();
-        jrbPlacas = new javax.swing.JRadioButton();
         btnInicio = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLbHistorial = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tlbHistorial = new javax.swing.JTable();
 
@@ -145,28 +156,6 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Historial de Tramites");
 
-        jrbLicencia.setBackground(new java.awt.Color(0, 51, 0));
-        btgTipoTramite.add(jrbLicencia);
-        jrbLicencia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jrbLicencia.setForeground(new java.awt.Color(255, 255, 255));
-        jrbLicencia.setText("Licencias");
-        jrbLicencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbLicenciaActionPerformed(evt);
-            }
-        });
-
-        jrbPlacas.setBackground(new java.awt.Color(0, 51, 0));
-        btgTipoTramite.add(jrbPlacas);
-        jrbPlacas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jrbPlacas.setForeground(new java.awt.Color(255, 255, 255));
-        jrbPlacas.setText("Placas");
-        jrbPlacas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbPlacasActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -176,14 +165,8 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
                     .addComponent(jLbPersona, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jrbLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jrbPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,11 +175,7 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLbPersona)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrbLicencia)
-                    .addComponent(jrbPlacas))
-                .addGap(25, 25, 25))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         btnInicio.setBackground(new java.awt.Color(153, 0, 51));
@@ -219,22 +198,19 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
             }
         });
 
-        jLbHistorial.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLbHistorial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
         tlbHistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Estado", "Fecha Expedicion", "Vigencia", "Mas informacion"
+                "Id", "Estado", "Fecha Expedicion", "Vigencia", "Tipo Tramite", "Mas informacion"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -259,10 +235,6 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLbHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 109, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -271,9 +243,7 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jLbHistorial)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -299,22 +269,50 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void buscarPlaca(int id){
+    /**
+     *
+     * Busca la placa con el id especificado en la lista de placas y muestra un
+     * mensaje de información.
+     *
+     * @param id el id de la placa a buscar.
+     */
+    public void buscarPlaca(int id) {
         for (Placa placas : listaPlacas) {
-            if(placas.getId() == id){
+            if (placas.getId() == id) {
                 this.mostrarMensajeInformacionPlaca(placas);
             }
         }
     }
-    public void buscarLicencia(int id){
+
+    /**
+     *
+     * Busca la licencia con el id especificado en la lista de licencias y
+     * muestra un mensaje de información.
+     *
+     * @param id el id de la licencia a buscar.
+     */
+    public void buscarLicencia(int id) {
         for (Licencia licencias : listaLicencias) {
-            if(licencias.getId() == id){
+            if (licencias.getId() == id) {
                 this.mostrarMensajeInformacionLicencia(licencias);
             }
         }
     }
-    
-    private void botonActionPerformed(int fila,int bandera) {
+
+    /**
+     *
+     * Maneja el evento de hacer clic en un botón de la tabla de historial de
+     * tramites.
+     *
+     * Obtiene el id del tramite seleccionado y determina si se trata de una
+     * placa o una licencia.
+     *
+     * Si es una placa, llama al método buscarPlaca() con el id; si es una
+     * licencia, llama al método buscarLicencia() con el id.
+     *
+     * @param fila la fila de la tabla en la que se hizo clic.
+     */
+    private void botonActionPerformed(int fila) {
         int filaSeleccionada = tlbHistorial.getSelectedRow();
         List<Object> valoresFila = new ArrayList<>();
         for (int i = 0; i < tlbHistorial.getColumnCount(); i++) {
@@ -322,47 +320,46 @@ public class HistorialTramitesMostrar extends javax.swing.JFrame {
             valoresFila.add(valor);
         }
         int id = Integer.parseInt(valoresFila.get(0).toString());
-        if (bandera == 0){
+
+        if (TipoTramite.valueOf(valoresFila.get(4).toString()) == TipoTramite.Placas) {
+
             this.buscarPlaca(id);
-        }else{
+        } else {
             this.buscarLicencia(id);
         }
     }
-    
+
+
+    /**
+     * Metodo que se activa cuando el usuario da click en el boton inicio, lo que 
+     * provoca volver a la pantalla de inicio
+     * @param evt evento que lanza la accion
+     */
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.dispose();
         new MenuInicio();
     }//GEN-LAST:event_btnInicioActionPerformed
 
+    /**
+     * Metodo que se activa cuando el usuario da click en el cancelar, regresnado 
+     * a la venta de busque de personas
+     * @param evt evento que lanza la accion
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
         BusquedaPersona busquedaPersona = new BusquedaPersona(Ventana.HISTORIALTRAMITES);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jrbLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbLicenciaActionPerformed
-        this.jLbHistorial.setText("Historial Licencias");
-        this.llenarLicenciasTabla();
-    }//GEN-LAST:event_jrbLicenciaActionPerformed
-
-    private void jrbPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPlacasActionPerformed
-         this.jLbHistorial.setText("Historial Placas");
-         this.llenarPlacasTabla();
-    }//GEN-LAST:event_jrbPlacasActionPerformed
-
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgTipoTramite;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLbHistorial;
     private javax.swing.JLabel jLbPersona;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton jrbLicencia;
-    private javax.swing.JRadioButton jrbPlacas;
     private javax.swing.JTable tlbHistorial;
     // End of variables declaration//GEN-END:variables
 }

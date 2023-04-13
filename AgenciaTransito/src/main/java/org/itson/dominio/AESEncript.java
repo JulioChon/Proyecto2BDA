@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.itson.dominio;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -26,8 +27,15 @@ public class AESEncript implements AttributeConverter<String, String> {
 
     private final SecretKeySpec secretKeySpec;
 
+    /**
+     *
+     * Constructor de la clase AESEncript. La clave secreta se deriva de la
+     * contraseña y se almacena como una instancia de SecretKeySpec. Se utiliza
+     * el algoritmo SHA-1 para obtener la clave a partir de la contraseña. En
+     * caso de que ocurra un error al obtener la clave, se lanza una excepción
+     * RuntimeException.
+     */
     public AESEncript() {
-        // La clave secreta se deriva de la contraseña y se almacena como una instancia de SecretKeySpec.
         try {
             byte[] key = (SECRET_KEY).getBytes("UTF-8");
             MessageDigest sha = MessageDigest.getInstance("SHA-1");
@@ -41,6 +49,16 @@ public class AESEncript implements AttributeConverter<String, String> {
         }
     }
 
+    /**
+     *
+     * Método encargado de cifrar un valor utilizando el algoritmo
+     * AES/CBC/PKCS5PADDING. Se utiliza la clave secreta y el vector de
+     * inicialización para generar el cifrado. En caso de que ocurra un error al
+     * cifrar el valor, se lanza una excepción RuntimeException.
+     *
+     * @param value valor a cifrar.
+     * @return valor cifrado en Base64.
+     */
     @Override
     public String convertToDatabaseColumn(String value) {
         if (value == null) {
@@ -56,6 +74,16 @@ public class AESEncript implements AttributeConverter<String, String> {
         }
     }
 
+    /**
+     *
+     * Método encargado de descifrar un valor cifrado en Base64 utilizando el
+     * algoritmo AES/CBC/PKCS5PADDING. Se utiliza la clave secreta y el vector
+     * de inicialización para generar el descifrado. En caso de que ocurra un
+     * error al descifrar el valor, se lanza una excepción RuntimeException.
+     *
+     * @param encryptedValue valor cifrado en Base64.
+     * @return valor descifrado.
+     */
     @Override
     public String convertToEntityAttribute(String encryptedValue) {
         if (encryptedValue == null) {

@@ -44,7 +44,10 @@ public class BusquedaPersona extends javax.swing.JFrame {
     private String nombreCompleto;
 
     /**
-     * Creates new form TramiteLicencia
+     * Metodo constructor el cual inicializa los atributos de la clase
+     *
+     * @param ventanaSiguiente le inidica a la clase cual es la clase a la cual
+     * le pasara su informacion
      */
     public BusquedaPersona(Ventana ventanaSiguiente) {
         initComponents();
@@ -55,16 +58,19 @@ public class BusquedaPersona extends javax.swing.JFrame {
         this.nombreCompleto = null;
     }
 
+    /**
+     * Metodo que extrae los datos del formulario
+     */
     public void extraerDatos() {
 
         if (!txtNombre.getText().isEmpty()) {
             nombreCompleto = txtNombre.getText();
 
         }
- 
+
         if (!txtRFC.getText().isEmpty() || dtFechaNacimiento.getDate() != null) {
             params = new ParametrosBusquedaPersonas();
-            
+
             if (!txtRFC.getText().isEmpty()) {
                 params.setRfc(txtRFC.getText());
             }
@@ -77,11 +83,17 @@ public class BusquedaPersona extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metodo que consulta la lista de personas la cual se debe de presentar en
+     * la tabla
+     *
+     * @return lista de personas a presentarse en la tabla
+     */
     public List<Persona> listaPersonas() {
         PersonasDAO personasDAO = new PersonasDAO();
         List<Persona> lista2 = null;
         List<Persona> lista1 = personasDAO.buscar(params); // Obtener con rfc y fechaNacimiento
-        if (nombreCompleto!=null) {
+        if (nombreCompleto != null) {
             lista2 = personasDAO.buscarNombre(nombreCompleto); // Obtener la segunda lista de algún lugar
         }
 
@@ -99,6 +111,16 @@ public class BusquedaPersona extends javax.swing.JFrame {
         return listaUnica;
     }
 
+    /**
+     *
+     * Llena la tabla de personas con la información obtenida de la lista de
+     * personas. Utiliza un objeto SimpleDateFormat para formatear la fecha de
+     * nacimiento de cada persona. Agrega las filas a un DefaultTableModel y
+     * setea el modelo a la tabla tblPersonas. También se encarga de renderizar
+     * y editar la columna 6 de la tabla con botones. Cuando se hace clic en un
+     * botón de la columna 6, se ejecuta el método botonActionPerformed(fila)
+     * pasando como parámetro la fila correspondiente.
+     */
     public void llenarTabla() {
         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
         List<Persona> personas = this.listaPersonas();
@@ -128,6 +150,14 @@ public class BusquedaPersona extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * Crea un objeto Persona a partir de los valores de una fila de una tabla.
+     *
+     * @param valoresFila una lista de objetos que contienen los valores de la
+     * fila.
+     * @return un objeto Persona con los valores correspondientes.
+     */
     public Persona creacionPersona(List<Object> valoresFila) {
         String fechaString = valoresFila.get(4).toString();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -145,6 +175,21 @@ public class BusquedaPersona extends javax.swing.JFrame {
         return persona;
     }
 
+    /**
+     *
+     * Acción que se ejecuta al hacer clic en un botón de una fila de la tabla
+     * de personas. Obtiene los valores de la fila seleccionada y crea una
+     * instancia de Persona a partir de ellos. Si la ventana siguiente es
+     * TRAMITELICENCIAS, cierra esta ventana y abre la ventana de
+     * TramiteLicencia. Si la ventana siguiente es TRAMITEPLACAS, verifica si la
+     * persona tiene una licencia vigente y en caso afirmativo cierra esta
+     * ventana y abre la ventana de TramitePlacas. Si no tiene una licencia
+     * vigente muestra un mensaje de error. Si la ventana siguiente es
+     * HISTORIALTRAMITES, cierra esta ventana y abre la ventana de
+     * HistorialTramitesMostrar.
+     *
+     * @param fila el índice de la fila seleccionada en la tabla de personas.
+     */
     private void botonActionPerformed(int fila) {
         int filaSeleccionada = tblPersonas.getSelectedRow();
         List<Object> valoresFila = new ArrayList<>();
@@ -491,11 +536,21 @@ public class BusquedaPersona extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo que se activa cuando el usario da click en el boton cancelar, 
+     * cerrando la ventana y llamando a la venta inicio
+     * @param evt evento que lanza la accion
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
         MenuInicio menuInicio = new MenuInicio();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    /**
+     * Metodo que se activa cuando el usuario da click en el boton buscar,
+     * llamando a los metodos extraer datos y llenar tabla
+     * @param evt evento que lanza el metodo
+     */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         this.extraerDatos();
         this.llenarTabla();

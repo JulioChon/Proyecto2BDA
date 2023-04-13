@@ -20,8 +20,8 @@ BEGIN
 
 UPDATE licencias SET estado = 'Inactivo' WHERE rfc = p_rfc AND estado = 'Activo';
   
-  INSERT INTO licencias (Costo, estado, fecha_expedicion, tipoCosto, vigencia, rfc)
-  VALUES (p_costo, p_estado, p_fecha_expedicion, p_tipoCosto, p_vigencia, p_rfc);
+  INSERT INTO licencias (Costo, estado, fecha_expedicion, tipoCosto, vigencia, rfc,tipoTramite)
+  VALUES (p_costo, p_estado, p_fecha_expedicion, p_tipoCosto, p_vigencia, p_rfc,"Licencias");
 END;$$
 DELIMITER ;
 
@@ -42,8 +42,8 @@ BEGIN
   WHERE numeroserie = p_numero_serie;
   
 
-  INSERT INTO placas (numeroserie, fecha_entrega, fecha_expedicion, vigencia, tipoPlaca, rfc, costo, estado)
-  VALUES (p_numero_serie, p_fecha_entrega, p_fecha_expedicion, p_vigencia, p_tipo_placa, p_rfc, p_costo, p_estado);
+  INSERT INTO placas (numeroserie, fecha_entrega, fecha_expedicion, vigencia, tipoPlaca, rfc, costo, estado,tipoTramite)
+  VALUES (p_numero_serie, p_fecha_entrega, p_fecha_expedicion, p_vigencia, p_tipo_placa, p_rfc, p_costo, p_estado,"Placas");
 END;$$
 DELIMITER ;
 

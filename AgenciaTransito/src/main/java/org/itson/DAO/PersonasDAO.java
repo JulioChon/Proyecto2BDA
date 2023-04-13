@@ -4,6 +4,7 @@
  */
 package org.itson.DAO;
 
+import excepciones.PersistenciaException;
 import interfaces.IPersonasDAO;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -27,8 +28,14 @@ import org.itson.dominio.Persona;
  */
 public class PersonasDAO implements IPersonasDAO {
 
+    /**
+     * Metodo que agrega a la base de datos la informacion de 20 personas 
+     * @throws PersistenciaException lanza esta excepcion en caso de haber un problema al 
+     * agregar a las personas
+     */
     @Override
-    public void agregarPersonas() {
+    public void agregarPersonas() throws PersistenciaException{
+        try {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
 
@@ -57,15 +64,24 @@ public class PersonasDAO implements IPersonasDAO {
 
         Persona[] personas = {persona, persona2, persona3, persona4, persona5, persona6, persona7, persona8, persona9, persona10, persona11,
             persona12, persona13, persona14, persona15, persona16, persona17, persona18, persona19, persona20};
-
-        for (Persona p : personas) {
-            entityManager.persist(p);
+        
+            for (Persona p : personas) {
+                entityManager.persist(p);
+            }
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            throw new PersistenciaException("Las personas ya fueron registradas");
         }
-
-        entityManager.getTransaction().commit();
 
     }
 
+    /**
+     * Metodo que devuelve una lista de personas las cuales se obtien mediante una 
+     * serie de parametros que recibe en su parametro
+     * @param params parametros para la busqueda de las personas
+     * @return lista de personas que cumplen los filtros, en caso de no haber filtros
+     * regresa una lista con todas las personas de la lista
+     */
     @Override
     public List<Persona> buscar(ParametrosBusquedaPersonas params) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
@@ -103,6 +119,13 @@ public class PersonasDAO implements IPersonasDAO {
 
     }
 
+    /**
+     * Metodo que devuelve una lista de personas, las cuales en su nombre exista 
+     * coinsidencias con el atributo que recibe en su parametros
+     * @param nombreCompleto nombre de la persona o personas que se buscan 
+     * @return lista de personas las cuales tengas coicidencias con el nombre 
+     * que recibe en su parametro
+     */
     @Override
     public List<Persona> buscarNombre(String nombre) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
@@ -115,7 +138,7 @@ public class PersonasDAO implements IPersonasDAO {
         entityManager.getTransaction().commit();
         String nombreCompleto = null;
         for (Persona persona : personas) {
-            nombreCompleto = persona.getNombre() + " "+ persona.getApellidoPaterno() + " "+persona.getApellidoPaterno();
+            nombreCompleto = persona.getNombre() + " " + persona.getApellidoPaterno() + " " + persona.getApellidoPaterno();
             if (nombreCompleto.toUpperCase().contains(nombre.toUpperCase())) {
                 coincidencia.add(persona);
             }

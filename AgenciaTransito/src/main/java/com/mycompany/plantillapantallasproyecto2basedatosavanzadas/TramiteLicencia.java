@@ -22,11 +22,17 @@ import utilidades.Ventana;
  * @author Zaurus
  */
 public class TramiteLicencia extends javax.swing.JFrame {
+
     private Persona personaTramite;
     private TipoLicencia tipoLicencia;
     private int anosVigencia;
+
     /**
-     * Creates new form TramiteLicencia
+     * Metodo constructor de la clase, el cual inicializa los atributos de la
+     * misma
+     *
+     * @param personaTramite persona a la cual se le realizara el tramite de
+     * licencia
      */
     public TramiteLicencia(Persona personaTramite) {
         initComponents();
@@ -37,22 +43,31 @@ public class TramiteLicencia extends javax.swing.JFrame {
         txtInformacionPersona.setText(informacion);
 
     }
-     public void mostrarMensajeLicenciaGuardadas() {
+
+    /**
+     * Muestra un mensaje de confirmación de que la licencia ha sido guardada
+     * correctamente.
+     */
+    public void mostrarMensajeLicenciaGuardadas() {
         JOptionPane.showMessageDialog(this, "Licencia guardada correctamente",
                 "Completado", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    private void creacionObjeto(){
+
+    /**
+     * Crea un objeto de licencia y lo registra en la base de datos a través de
+     * TramitesDAO.
+     */
+    private void creacionObjeto() {
         Licencia licencia = new Licencia();
         GregorianCalendar fechaActual = new GregorianCalendar();
         GregorianCalendar fechaVencimiento = new GregorianCalendar();
-        if(anosVigencia == 1){
-           fechaVencimiento.add(Calendar.YEAR, 1);
+        if (anosVigencia == 1) {
+            fechaVencimiento.add(Calendar.YEAR, 1);
         }
-        if(anosVigencia == 2){
+        if (anosVigencia == 2) {
             fechaVencimiento.add(Calendar.YEAR, 2);
         }
-        if(anosVigencia == 3){
+        if (anosVigencia == 3) {
             fechaVencimiento.add(Calendar.YEAR, 3);
         }
         licencia.setCosto(Float.parseFloat(txtPrecio.getText()));
@@ -62,32 +77,37 @@ public class TramiteLicencia extends javax.swing.JFrame {
         licencia.setVigencia(fechaVencimiento);
         licencia.setPersona(personaTramite);
         TramitesDAO tramitesDAO = new TramitesDAO();
-        tramitesDAO.registrarLicencia(licencia); 
+        tramitesDAO.registrarLicencia(licencia);
         this.mostrarMensajeLicenciaGuardadas();
         this.dispose();
         new MenuInicio();
     }
-    public boolean acreeditarCampos()
-    {
-        
-        if(btgVigencia.getSelection() != null && btgDiscapacitado.getSelection() != null)
-        {
-         return true;
+
+    /**
+     * Verifica si los campos de vigencia y discapacidad han sido seleccionados
+     * y muestra un mensaje de error si alguno de ellos no ha sido seleccionado.
+     * Devuelve true si todos los campos son válidos y false en caso contrario.
+     *
+     * @return true si todos los campos son válidos y false en caso contrario
+     */
+    public boolean acreeditarCampos() {
+
+        if (btgVigencia.getSelection() != null && btgDiscapacitado.getSelection() != null) {
+            return true;
         } else {
             String mensaje = "Campo(s) invalido(s) [Formato(s) valido(s)]\n";
             if (btgVigencia.getSelection() == null) {
-                mensaje +=   "- Seleccione vigencia [1/2/3]\n";
+                mensaje += "- Seleccione vigencia [1/2/3]\n";
             }
             if (btgDiscapacitado.getSelection() == null) {
-                mensaje +=   "- Seleccione discapacidad [Si/No]\n";
+                mensaje += "- Seleccione discapacidad [Si/No]\n";
             }
             JOptionPane.showMessageDialog(this, mensaje);
             return false;
         }
-        
-    
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -411,76 +431,119 @@ public class TramiteLicencia extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Meotodo el cual se activa cuando el usaurio selecciona que su licencia
+     * sera de 3 anos, inidicando esto a el atributo de precio para asi calcular
+     * su precio
+     *
+     * @param evt evento que lanza el metodo
+     */
     private void rbtn3AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn3AnoActionPerformed
         this.anosVigencia = 3;
-        if(rbtnNo.isSelected()){
+        if (rbtnNo.isSelected()) {
             txtPrecio.setText("1100");
         }
-        if(rbtnSi.isSelected()){
-           txtPrecio.setText("700");
+        if (rbtnSi.isSelected()) {
+            txtPrecio.setText("700");
         }
     }//GEN-LAST:event_rbtn3AnoActionPerformed
 
+    /**
+     * Meotodo el cual se activa cuando el usaurio selecciona que su licencia
+     * sera de 2 anos, inidicando esto a el atributo de precio para asi calcular
+     * su precio
+     *
+     * @param evt evento que lanza el metodo
+     */
     private void rbtn2AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn2AnoActionPerformed
         this.anosVigencia = 3;
-        if(rbtnNo.isSelected()){
+        if (rbtnNo.isSelected()) {
             txtPrecio.setText("900");
         }
-        if(rbtnSi.isSelected()){
-           txtPrecio.setText("500");
+        if (rbtnSi.isSelected()) {
+            txtPrecio.setText("500");
         }
     }//GEN-LAST:event_rbtn2AnoActionPerformed
 
+    /**
+     * Meotodo el cual se activa cuando el usaurio selecciona que su licencia
+     * sera de 1anos, inidicando esto a el atributo de precio para asi calcular
+     * su precio
+     *
+     * @param evt evento que lanza el metodo
+     */
     private void rbtn1AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn1AnoActionPerformed
         this.anosVigencia = 3;
-        if(rbtnNo.isSelected()){
+        if (rbtnNo.isSelected()) {
             txtPrecio.setText("600");
         }
-        if(rbtnSi.isSelected()){
-           txtPrecio.setText("200");
+        if (rbtnSi.isSelected()) {
+            txtPrecio.setText("200");
         }
     }//GEN-LAST:event_rbtn1AnoActionPerformed
-
+    /**
+     * Metodo el cual se activa cuando el usuario da click en el boton aceptar,
+     * llamando al metodo creacionObjeto
+     *
+     * @param evt evento que lanza el metodo
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-      if(acreeditarCampos())
-      {
-        this.creacionObjeto();
-      }
-      
-    }//GEN-LAST:event_btnAceptarActionPerformed
+        if (acreeditarCampos()) {
+            this.creacionObjeto();
+        }
 
+    }//GEN-LAST:event_btnAceptarActionPerformed
+    /**
+     * Metodo que se activa cuando el usuario da click en el cancelar,
+     * regresnado a la venta de busque de personas
+     *
+     * @param evt evento que lanza la accion
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
         BusquedaPersona busquedaPersona = new BusquedaPersona(Ventana.TRAMITELICENCIAS);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    /**
+     * Meotodo el cual se activa cuando el usaurio selecciona que su licencia es
+     * discapacitado, inidicando esto a el atributo de precio para asi calcular
+     * su precio
+     *
+     * @param evt evento que lanza el metodo
+     */
     private void rbtnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnSiActionPerformed
-       this.tipoLicencia = TipoLicencia.Discapacitado;
-        if(rbtn1Ano.isSelected()){
-           txtPrecio.setText("200");
-       }
-       if(rbtn2Ano.isSelected()){
-           txtPrecio.setText("500");
-       }
-       if(rbtn3Ano.isSelected()){
-           txtPrecio.setText("700");
-       }
+        this.tipoLicencia = TipoLicencia.Discapacitado;
+        if (rbtn1Ano.isSelected()) {
+            txtPrecio.setText("200");
+        }
+        if (rbtn2Ano.isSelected()) {
+            txtPrecio.setText("500");
+        }
+        if (rbtn3Ano.isSelected()) {
+            txtPrecio.setText("700");
+        }
     }//GEN-LAST:event_rbtnSiActionPerformed
 
+    /**
+     * Meotodo el cual se activa cuando el usaurio selecciona que su licencia no
+     * es discapacitado, inidicando esto a el atributo de precio para asi
+     * calcular su precio
+     *
+     * @param evt evento que lanza el metodo
+     */
     private void rbtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnNoActionPerformed
-       this.tipoLicencia = TipoLicencia.Discapacitado;
-        if(rbtn1Ano.isSelected()){
-           txtPrecio.setText("600");
-       }
-       if(rbtn2Ano.isSelected()){
-           txtPrecio.setText("900");
-       }
-       if(rbtn3Ano.isSelected()){
-           txtPrecio.setText("1100");
-       }
+        this.tipoLicencia = TipoLicencia.Discapacitado;
+        if (rbtn1Ano.isSelected()) {
+            txtPrecio.setText("600");
+        }
+        if (rbtn2Ano.isSelected()) {
+            txtPrecio.setText("900");
+        }
+        if (rbtn3Ano.isSelected()) {
+            txtPrecio.setText("1100");
+        }
     }//GEN-LAST:event_rbtnNoActionPerformed
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgDiscapacitado;

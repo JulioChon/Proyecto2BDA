@@ -4,6 +4,9 @@
  */
 package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
+import excepciones.PersistenciaException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.DAO.PersonasDAO;
 import utilidades.Ventana;
@@ -24,6 +27,10 @@ public class MenuInicio extends javax.swing.JFrame {
     public void mostrarMensajePersonasGuardadas() {
         JOptionPane.showMessageDialog(this, "Personas agregadas correctamente",
                 "Completado", JOptionPane.INFORMATION_MESSAGE);
+    }
+     public void mostrarMensajePersonasError() {
+        JOptionPane.showMessageDialog(this, "Las personas ya fueron agregadas",
+                "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -200,9 +207,13 @@ public class MenuInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistorialTramitesActionPerformed
 
     private void btnRegistrarPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPersonasActionPerformed
-        PersonasDAO personasDAO = new PersonasDAO();
-        personasDAO.agregarPersonas();
-        this.mostrarMensajePersonasGuardadas();
+        try {
+            PersonasDAO personasDAO = new PersonasDAO();
+            personasDAO.agregarPersonas();
+            this.mostrarMensajePersonasGuardadas();
+        } catch (PersistenciaException ex) {
+            this.mostrarMensajePersonasError();
+        }
     }//GEN-LAST:event_btnRegistrarPersonasActionPerformed
 
     private void btnTramiteLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTramiteLicenciaActionPerformed

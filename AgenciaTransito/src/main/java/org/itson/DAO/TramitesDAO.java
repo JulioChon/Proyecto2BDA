@@ -39,6 +39,11 @@ import utilidades.TipoTramite;
  */
 public class TramitesDAO implements ITramite {
 
+    /**
+     * Metodo que usa un stored de mysql para agregar una licencia a la 
+     * base de datos, agrega la licencia que recibe en su parametro
+     * @param licencia licencia que se desea agregar 
+     */
     @Override
     public void registrarLicencia(Licencia licencia) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
@@ -66,6 +71,11 @@ public class TramitesDAO implements ITramite {
         storedProcedure.execute();
     }
 
+    /**
+     * Metodo que usa un stored de mysql para agregar una placa a la base 
+     * de datos, agrega la placa que recibe en un parametro
+     * @param placa placa que se desea agregar 
+     */
     @Override
     public void registrarPlaca(Placa placa) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
