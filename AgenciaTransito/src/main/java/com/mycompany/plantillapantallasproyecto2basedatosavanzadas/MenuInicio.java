@@ -40,7 +40,7 @@ public class MenuInicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnTramiteLicencia = new javax.swing.JButton();
         btnRegistrarPersonas = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnReportes = new javax.swing.JButton();
         btnTramitePlacas = new javax.swing.JButton();
         btnHistorialTramites = new javax.swing.JButton();
         btnRegistrarVehiculo = new javax.swing.JButton();
@@ -92,10 +92,15 @@ public class MenuInicio extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(153, 0, 51));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Reportes de tramites");
+        btnReportes.setBackground(new java.awt.Color(153, 0, 51));
+        btnReportes.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnReportes.setForeground(new java.awt.Color(255, 255, 255));
+        btnReportes.setText("Reportes de tramites");
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesActionPerformed(evt);
+            }
+        });
 
         btnTramitePlacas.setBackground(new java.awt.Color(153, 0, 51));
         btnTramitePlacas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -136,7 +141,7 @@ public class MenuInicio extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnHistorialTramites, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnTramitePlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnTramiteLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -166,7 +171,7 @@ public class MenuInicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnHistorialTramites, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegistrarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -215,15 +220,20 @@ public class MenuInicio extends javax.swing.JFrame {
         new RegistrarVehiculo(Ventana.MENU);
     }//GEN-LAST:event_btnRegistrarVehiculoActionPerformed
 
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
+        this.dispose();
+        new GenerarReporte();
+    }//GEN-LAST:event_btnReportesActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHistorialTramites;
     private javax.swing.JButton btnRegistrarPersonas;
     private javax.swing.JButton btnRegistrarVehiculo;
+    private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnTramiteLicencia;
     private javax.swing.JButton btnTramitePlacas;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

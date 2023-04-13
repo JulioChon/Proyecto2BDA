@@ -36,7 +36,6 @@ interfaces\ITramite.class
 org\itson\dominio\Vehiculo_.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$1.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar$3.class
-com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$6.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$2.class
 org\itson\dominio\Vehiculo.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona$3.class

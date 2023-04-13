@@ -4,16 +4,21 @@
  */
 package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
+import java.util.List;
+import org.itson.dominio.Tramite;
+
 /**
  *
  * @author Zaurus
  */
 public class MostrarReporte extends javax.swing.JFrame {
-
+    private List<Tramite> listaTramites;
+    
     /**
      * Creates new form TramiteLicencia
      */
-    public MostrarReporte() {
+    public MostrarReporte(List<Tramite> listaTramites) {
+        this.listaTramites = listaTramites;
         initComponents();
     }
 

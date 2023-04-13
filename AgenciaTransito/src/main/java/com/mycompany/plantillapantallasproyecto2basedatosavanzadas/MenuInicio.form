@@ -51,7 +51,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton3" min="-2" pref="434" max="-2" attributes="0"/>
+                              <Component id="btnReportes" min="-2" pref="434" max="-2" attributes="0"/>
                               <Component id="btnHistorialTramites" min="-2" pref="434" max="-2" attributes="0"/>
                               <Component id="btnTramitePlacas" min="-2" pref="434" max="-2" attributes="0"/>
                               <Component id="btnTramiteLicencia" min="-2" pref="434" max="-2" attributes="0"/>
@@ -91,7 +91,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnHistorialTramites" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="62" max="-2" attributes="0"/>
+                  <Component id="btnReportes" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnRegistrarVehiculo" min="-2" pref="56" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -174,7 +174,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarPersonasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btnReportes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="99" type="rgb"/>
@@ -187,6 +187,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Reportes de tramites"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnTramitePlacas">
           <Properties>

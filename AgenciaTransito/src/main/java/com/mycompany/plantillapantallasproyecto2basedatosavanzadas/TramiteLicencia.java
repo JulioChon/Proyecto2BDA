@@ -105,6 +105,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtInformacionPersona = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -128,26 +129,26 @@ public class TramiteLicencia extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 51, 0));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Tramite de licencia");
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Tramite de licencia");
 
         jPanel3.setBackground(new java.awt.Color(0, 51, 0));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Informacion de la Persona");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
 
         txtInformacionPersona.setEditable(false);
-        txtInformacionPersona.setBackground(new java.awt.Color(0, 51, 0));
         txtInformacionPersona.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        txtInformacionPersona.setForeground(new java.awt.Color(255, 255, 255));
         txtInformacionPersona.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtInformacionPersona.setBackground(new java.awt.Color(0, 51, 0));
         txtInformacionPersona.setBorder(null);
+        txtInformacionPersona.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -155,7 +156,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -177,14 +178,19 @@ public class TramiteLicencia extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -192,72 +198,80 @@ public class TramiteLicencia extends javax.swing.JFrame {
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(564, 176));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Discapacitado");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Vigencia");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
-        rbtn1Ano.setBackground(new java.awt.Color(51, 51, 51));
         btgVigencia.add(rbtn1Ano);
+        rbtn1Ano.setText("1 AÑO");
+        rbtn1Ano.setBackground(new java.awt.Color(153, 0, 51));
+        rbtn1Ano.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtn1Ano.setBorderPainted(true);
         rbtn1Ano.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbtn1Ano.setForeground(new java.awt.Color(255, 255, 255));
-        rbtn1Ano.setText("1 AÑO");
         rbtn1Ano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtn1AnoActionPerformed(evt);
             }
         });
 
-        rbtn2Ano.setBackground(new java.awt.Color(51, 51, 51));
         btgVigencia.add(rbtn2Ano);
+        rbtn2Ano.setText("2 AÑOS");
+        rbtn2Ano.setBackground(new java.awt.Color(153, 0, 51));
+        rbtn2Ano.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtn2Ano.setBorderPainted(true);
         rbtn2Ano.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbtn2Ano.setForeground(new java.awt.Color(255, 255, 255));
-        rbtn2Ano.setText("2 AÑOS");
         rbtn2Ano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtn2AnoActionPerformed(evt);
             }
         });
 
-        rbtn3Ano.setBackground(new java.awt.Color(51, 51, 51));
         btgVigencia.add(rbtn3Ano);
+        rbtn3Ano.setText("3 AÑOS");
+        rbtn3Ano.setBackground(new java.awt.Color(153, 0, 51));
+        rbtn3Ano.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtn3Ano.setBorderPainted(true);
         rbtn3Ano.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbtn3Ano.setForeground(new java.awt.Color(255, 255, 255));
-        rbtn3Ano.setText("3 AÑOS");
         rbtn3Ano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtn3AnoActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Costo");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
 
-        rbtnSi.setBackground(new java.awt.Color(51, 51, 51));
         btgDiscapacitado.add(rbtnSi);
+        rbtnSi.setText("Si");
+        rbtnSi.setBackground(new java.awt.Color(153, 0, 51));
+        rbtnSi.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtnSi.setBorderPainted(true);
         rbtnSi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbtnSi.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnSi.setText("Si");
-        rbtnSi.setBorder(null);
         rbtnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnSiActionPerformed(evt);
             }
         });
 
-        rbtnNo.setBackground(new java.awt.Color(51, 51, 51));
         btgDiscapacitado.add(rbtnNo);
+        rbtnNo.setText("No");
+        rbtnNo.setBackground(new java.awt.Color(153, 0, 51));
+        rbtnNo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtnNo.setBorderPainted(true);
         rbtnNo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbtnNo.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnNo.setText("No");
-        rbtnNo.setBorder(null);
         rbtnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnNoActionPerformed(evt);
@@ -265,14 +279,14 @@ public class TramiteLicencia extends javax.swing.JFrame {
         });
 
         txtPrecio.setEditable(false);
-        txtPrecio.setBackground(new java.awt.Color(51, 51, 51));
         txtPrecio.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecio.setBackground(new java.awt.Color(51, 51, 51));
         txtPrecio.setBorder(null);
+        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setText("$");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("$");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -326,27 +340,27 @@ public class TramiteLicencia extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbtn3Ano))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addContainerGap()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(32, 32, 32)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(12, 12, 12))
         );
 
+        btnAceptar.setText("Aceptar");
         btnAceptar.setBackground(new java.awt.Color(153, 0, 51));
         btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
             }
         });
 
+        btnCancelar.setText("Cancelar");
         btnCancelar.setBackground(new java.awt.Color(153, 0, 51));
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -375,7 +389,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -483,6 +497,7 @@ public class TramiteLicencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JRadioButton rbtn1Ano;
     private javax.swing.JRadioButton rbtn2Ano;
     private javax.swing.JRadioButton rbtn3Ano;

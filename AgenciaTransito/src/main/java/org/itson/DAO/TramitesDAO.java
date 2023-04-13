@@ -5,10 +5,12 @@
 package org.itson.DAO;
 
 import interfaces.ITramite;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +29,9 @@ import org.itson.dominio.Licencia;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
 import org.itson.dominio.TipoLicencia;
+import org.itson.dominio.Tramite;
 import org.itson.dominio.Vehiculo;
+import utilidades.TipoTramite;
 
 /**
  *
@@ -76,10 +80,10 @@ public class TramitesDAO implements ITramite {
         storedProcedure.registerStoredProcedureParameter(6, String.class, ParameterMode.IN);
         storedProcedure.registerStoredProcedureParameter(7, Float.class, ParameterMode.IN);
         storedProcedure.registerStoredProcedureParameter(8, String.class, ParameterMode.IN);
-        
+
         Date fechaExpedicion = placa.getFechaExpedicion().getTime();
         Date vigencia = placa.getVigencia().getTime();
-        Date fechaEntrega =  placa.getFechaEntrega().getTime();
+        Date fechaEntrega = placa.getFechaEntrega().getTime();
         String rfc = placa.getPersona().getRfc();
         storedProcedure.setParameter(1, placa.getVehiculo().getNumeroSerie());
         storedProcedure.setParameter(2, fechaEntrega);
@@ -87,81 +91,81 @@ public class TramitesDAO implements ITramite {
         storedProcedure.setParameter(4, vigencia);
         storedProcedure.setParameter(5, placa.getTipoPlaca().toString());
         storedProcedure.setParameter(6, rfc);
-        storedProcedure.setParameter(7, (float)placa.getCosto());
+        storedProcedure.setParameter(7, (float) placa.getCosto());
         storedProcedure.setParameter(8, placa.getEstado().toString());
 
         storedProcedure.execute();
 
-    }    
-    public List<Placa> buscarPlacas(Persona persona)
-    {
+    }
+
+    public List<Placa> buscarPlacas(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery();
         Root<Placa> root = criteriaQuery.from(Placa.class);
         criteriaQuery.select(root);
-        
+
         Predicate predicatePlaca = criteriaBuilder.equal(root.get("persona"), persona);
         criteriaQuery.where(predicatePlaca);
         Query query = entityManager.createQuery(criteriaQuery);
         List<Placa> listaResultados = query.getResultList();
-        return  listaResultados;
+        return listaResultados;
     }
-    public List<Placa> buscarPlacas(Vehiculo vehiculo)
-    {
+
+    public List<Placa> buscarPlacas(Vehiculo vehiculo) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery();
         Root<Placa> root = criteriaQuery.from(Placa.class);
         criteriaQuery.select(root);
-        
+
         Predicate predicatePlaca = criteriaBuilder.equal(root.get("vehiculo"), vehiculo);
         criteriaQuery.where(predicatePlaca);
         Query query = entityManager.createQuery(criteriaQuery);
         List<Placa> listaResultados = query.getResultList();
-        return  listaResultados;
+        return listaResultados;
     }
-    public List<Placa> buscarPlacas(String serie)
-    {
+
+    public List<Placa> buscarPlacas(String serie) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery();
         Root<Placa> root = criteriaQuery.from(Placa.class);
         criteriaQuery.select(root);
-        
+
         Predicate predicatePlaca = criteriaBuilder.equal(root.get("serie"), serie);
         criteriaQuery.where(predicatePlaca);
         Query query = entityManager.createQuery(criteriaQuery);
         List<Placa> listaResultados = query.getResultList();
-        return  listaResultados;
+        return listaResultados;
     }
-    public List<Licencia> buscarLicencias(Persona persona)
-    {
+
+    public List<Licencia> buscarLicencias(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery();
         Root<Licencia> root = criteriaQuery.from(Licencia.class);
         criteriaQuery.select(root);
-        
+
         Predicate predicateLicencia = criteriaBuilder.equal(root.get("persona"), persona);
         criteriaQuery.where(predicateLicencia);
         Query query = entityManager.createQuery(criteriaQuery);
         List<Licencia> listaResultados = query.getResultList();
-        return  listaResultados;
+        return listaResultados;
     }
-    public List<Licencia> buscarLicenciasVigentes(Persona persona)
-    {
+
+    public List<Licencia> buscarLicenciasVigentes(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery criteriaQuery  = criteriaBuilder.createQuery();
+        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery();
         Root<Licencia> root = criteriaQuery.from(Licencia.class);
         criteriaQuery.select(root);
-        
+
         Predicate predicateLicenciaPersona = criteriaBuilder.equal(root.get("persona"), persona);
         java.sql.Date fecha = new java.sql.Date(new Date().getTime());
         Predicate predicateLicenciaVigente = criteriaBuilder.greaterThan(root.get("vigencia"), fecha);
@@ -169,7 +173,182 @@ public class TramitesDAO implements ITramite {
         criteriaQuery.where(predicateLicencia);
         Query query = entityManager.createQuery(criteriaQuery);
         List<Licencia> listaResultados = query.getResultList();
-        return  listaResultados;
+        return listaResultados;
+    }
+
+    public List<Tramite> buscar(ParametrosReportes params, Persona persona) {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Tramite> criteria = builder.createQuery(Tramite.class);
+        Root<Tramite> entidadTramite = criteria.from(Tramite.class);
+        List<Predicate> filtros = new LinkedList<>();
+        if (persona != null) {
+            CriteriaQuery<Persona> criteriaPersona = builder.createQuery(Persona.class);
+            Root<Persona> entidadPersona = criteria.from(Persona.class);
+            filtros.add(builder.equal(entidadTramite.get("persona"), persona));
+
+        }
+        if (params != null) {
+
+            if (params.getFechaInicio() != null && params.getFechaFin() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.between(entidadTramite.get("fechaExpedicion"), params.getFechaInicio(), params.getFechaFin()));
+            } else if (params.getFechaInicio() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.greaterThan(entidadTramite.get("fechaExpedicion"), params.getFechaInicio()));
+            } else if (params.getFechaFin() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.lessThan(entidadTramite.get("fechaExpedicion"), params.getFechaFin()));
+            }
+        }
+
+        if (filtros.isEmpty()) {
+            criteria = criteria.select(entidadTramite);
+        } else {
+            criteria = criteria.select(entidadTramite).where(
+                    builder.or((filtros.toArray(new Predicate[filtros.size()]))));
+        }
+
+        TypedQuery<Tramite> query = entityManager.createQuery(criteria);
+
+        List<Tramite> personas = query.getResultList();
+        return personas;
+
+    }
+
+    public List<Placa> buscarPlacas(ParametrosReportes params, Persona persona) {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Placa> criteria = builder.createQuery(Placa.class);
+        Root<Placa> entidadTramite = criteria.from(Placa.class);
+        List<Predicate> filtros = new LinkedList<>();
+        if (persona != null) {
+            CriteriaQuery<Persona> criteriaPersona = builder.createQuery(Persona.class);
+            Root<Persona> entidadPersona = criteria.from(Persona.class);
+            filtros.add(builder.equal(entidadTramite.get("persona"), persona));
+
+        }
+        if (params != null) {
+
+            if (params.getFechaInicio() != null && params.getFechaFin() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.between(entidadTramite.get("fechaExpedicion"), params.getFechaInicio(), params.getFechaFin()));
+            } else if (params.getFechaInicio() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.greaterThan(entidadTramite.get("fechaExpedicion"), params.getFechaInicio()));
+            } else if (params.getFechaFin() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.lessThan(entidadTramite.get("fechaExpedicion"), params.getFechaFin()));
+            }
+        }
+
+        if (filtros.isEmpty()) {
+            criteria = criteria.select(entidadTramite);
+        } else {
+            criteria = criteria.select(entidadTramite).where(
+                    builder.or((filtros.toArray(new Predicate[filtros.size()]))));
+        }
+
+        TypedQuery<Placa> query = entityManager.createQuery(criteria);
+
+        List<Placa> placas = query.getResultList();
+        return placas;
+
+    }
+
+    public List<Licencia> buscarLicencias(ParametrosReportes params, Persona persona) {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
+        EntityManager entityManager = emFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Licencia> criteria = builder.createQuery(Licencia.class);
+        Root<Licencia> entidadTramite = criteria.from(Licencia.class);
+        List<Predicate> filtros = new LinkedList<>();
+        if (persona != null) {
+            CriteriaQuery<Persona> criteriaPersona = builder.createQuery(Persona.class);
+            Root<Persona> entidadPersona = criteria.from(Persona.class);
+            filtros.add(builder.equal(entidadTramite.get("persona"), persona));
+
+        }
+        if (params != null) {
+
+            if (params.getFechaInicio() != null && params.getFechaFin() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.between(entidadTramite.get("fechaExpedicion"), params.getFechaInicio(), params.getFechaFin()));
+            } else if (params.getFechaInicio() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.greaterThan(entidadTramite.get("fechaExpedicion"), params.getFechaInicio()));
+            } else if (params.getFechaFin() != null) {
+                SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                filtros.add(builder.lessThan(entidadTramite.get("fechaExpedicion"), params.getFechaFin()));
+            }
+        }
+
+        if (filtros.isEmpty()) {
+            criteria = criteria.select(entidadTramite);
+        } else {
+            criteria = criteria.select(entidadTramite).where(
+                    builder.or((filtros.toArray(new Predicate[filtros.size()]))));
+        }
+
+        TypedQuery<Licencia> query = entityManager.createQuery(criteria);
+
+        List<Licencia> licencias = query.getResultList();
+        return licencias;
+
+    }
+
+    public List<Tramite> buscar(ParametrosReportes params) {
+        List<Tramite> listaResultados = new LinkedList<>();
+        if(params.getNombre() != null)
+        {
+            List<Persona> listaPersonas = new PersonasDAO().buscarNombre(params.getNombre());
+            for (int i = 0; i < listaPersonas.size(); i++) 
+            {
+                if (null != params.getTipoTramite()) 
+                switch (params.getTipoTramite()) {
+                    case PlacasLicencias:
+                        listaResultados.addAll(this.buscarPlacas(params, listaPersonas.get(i)));
+                        listaResultados.addAll(this.buscarLicencias(params, listaPersonas.get(i)));
+                        break;
+                    case Licencias:
+                        listaResultados.addAll(this.buscarLicencias(params, listaPersonas.get(i)));
+                        break;
+                    case Placas:
+                        listaResultados.addAll(this.buscarPlacas(params, listaPersonas.get(i)));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }else 
+        {
+            if (null != params.getTipoTramite()) 
+                switch (params.getTipoTramite()) {
+                case PlacasLicencias:
+                    listaResultados.addAll(this.buscarPlacas(params, null));
+                    listaResultados.addAll(this.buscarLicencias(params, null));
+                    break;
+                case Licencias:
+                    listaResultados.addAll(this.buscarLicencias(params, null));
+                    break;
+                case Placas:
+                    listaResultados.addAll(this.buscarPlacas(params, null));
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        return listaResultados;
     }
 
 }
