@@ -19,7 +19,7 @@ import utilidades.Ventana;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon.
  */
 public class TramiteLicencia extends javax.swing.JFrame {
 

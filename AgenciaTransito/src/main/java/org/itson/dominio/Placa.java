@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author julio
+ * @author Julio Chon, Luis Ayon
  */
 @Entity
 @PrimaryKeyJoinColumn(name = "id_placa")

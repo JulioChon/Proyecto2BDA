@@ -6,10 +6,7 @@ package org.itson.DAO;
 
 import interfaces.ITramite;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -24,18 +21,15 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import org.itson.dominio.Estado;
 import org.itson.dominio.Licencia;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
-import org.itson.dominio.TipoLicencia;
 import org.itson.dominio.Tramite;
 import org.itson.dominio.Vehiculo;
-import utilidades.TipoTramite;
 
 /**
  *
- * @author julio
+ * @author Julio Chon, Luis Ayon.
  */
 public class TramitesDAO implements ITramite {
 
@@ -107,7 +101,11 @@ public class TramitesDAO implements ITramite {
         storedProcedure.execute();
 
     }
-
+    /**
+     * Metodo que busca las placas registradas segun la persona que las registro.
+     * @param persona persona de la cual buscaran las placas
+     * @return lista de placas.
+     */
     public List<Placa> buscarPlacas(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -122,7 +120,11 @@ public class TramitesDAO implements ITramite {
         List<Placa> listaResultados = query.getResultList();
         return listaResultados;
     }
-
+    /**
+     * Metodo que busca las placas registradas segun el vehiculo que las posee.
+     * @param vehiculo vehiculo de la cual buscaran las placas
+     * @return lista de placas.
+     */
     public List<Placa> buscarPlacas(Vehiculo vehiculo) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -137,7 +139,11 @@ public class TramitesDAO implements ITramite {
         List<Placa> listaResultados = query.getResultList();
         return listaResultados;
     }
-
+    /**
+     * Metodo que busca las placas registradas segun la serie de la placa.
+     * @param serie serie de la cual buscaran las placas
+     * @return lista de placas.
+     */
     public List<Placa> buscarPlacas(String serie) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -152,7 +158,11 @@ public class TramitesDAO implements ITramite {
         List<Placa> listaResultados = query.getResultList();
         return listaResultados;
     }
-
+    /**
+     * Metodo que busca las licencias registradas segun la persona de la licencia.
+     * @param persona persona de la cual buscaran las licencias
+     * @return lista de licencias.
+     */
     public List<Licencia> buscarLicencias(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -167,7 +177,11 @@ public class TramitesDAO implements ITramite {
         List<Licencia> listaResultados = query.getResultList();
         return listaResultados;
     }
-
+    /**
+     * Metodo que busca las licencias registradas y aun vigentes segun la persona de la licencia.
+     * @param persona persona de la cual buscaran las licencias
+     * @return lista de licencias.
+     */
     public List<Licencia> buscarLicenciasVigentes(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -185,7 +199,12 @@ public class TramitesDAO implements ITramite {
         List<Licencia> listaResultados = query.getResultList();
         return listaResultados;
     }
-
+    /**
+     * Metodo que busca los tramites registrados segun la persona del tramite y una serie de parametros.
+     * @param params parametros que se usaran en la busqueda.
+     * @param persona persona de la cual buscaran los tramites
+     * @return lista de tramites.
+     */
     public List<Tramite> buscar(ParametrosReportes params, Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -229,7 +248,12 @@ public class TramitesDAO implements ITramite {
         return personas;
 
     }
-
+    /**
+     * Metodo que busca las placas registradas segun la persona del placa y una serie de parametros.
+     * @param params parametros que se usaran en la busqueda.
+     * @param persona persona de la cual buscaran las placas.
+     * @return lista de placas.
+     */
     public List<Placa> buscarPlacas(ParametrosReportes params, Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -273,7 +297,12 @@ public class TramitesDAO implements ITramite {
         return placas;
 
     }
-
+    /**
+     * Metodo que busca las licencias registradas segun la persona del licencia y una serie de parametros.
+     * @param params parametros que se usaran en la busqueda.
+     * @param persona persona de la cual buscaran las licencias.
+     * @return lista de licencias.
+     */
     public List<Licencia> buscarLicencias(ParametrosReportes params, Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -315,7 +344,11 @@ public class TramitesDAO implements ITramite {
         return licencias;
 
     }
-
+    /**
+     * Metodo que busca los tramites registrados segun una serie de parametros.
+     * @param params parametros que se usaran en la busqueda.
+     * @return lista de tramites.
+     */
     public List<Tramite> buscar(ParametrosReportes params) {
         List<Tramite> listaResultados = new LinkedList<>();
         if(params.getNombre() != null)

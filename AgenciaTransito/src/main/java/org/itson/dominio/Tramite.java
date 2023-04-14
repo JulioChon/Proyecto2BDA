@@ -16,6 +16,7 @@ import utilidades.TipoTramite;
 
 /**
  * Clase que representa un trámite de vehículo.
+ * @author Julio Chon, Luis Ayon
  */
 @Entity
 @Table(name = "Tramites")

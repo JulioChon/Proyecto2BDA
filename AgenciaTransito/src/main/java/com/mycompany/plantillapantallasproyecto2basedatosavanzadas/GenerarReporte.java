@@ -4,29 +4,33 @@
  */
 package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
-import botonesTabla.botonRenderizador;
-import botonesTabla.seleccionadorBoton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import org.itson.DAO.ParametrosBusquedaPersonas;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.itson.DAO.ParametrosReportes;
 import org.itson.DAO.TramitesDAO;
-import org.itson.dominio.Licencia;
 import org.itson.dominio.Persona;
 import org.itson.dominio.Tramite;
+import utilidades.ReporteDTO;
 import utilidades.TipoTramite;
-import utilidades.Ventana;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon
  */
 public class GenerarReporte extends javax.swing.JFrame {
     private Persona persona;
@@ -34,13 +38,17 @@ public class GenerarReporte extends javax.swing.JFrame {
     private ParametrosReportes params;
     private List<Tramite> listaTramites;
     /**
-     * Creates new form TramiteLicencia
+     * Constructor que inicializa los parametros del formulario.
      */
     public GenerarReporte() {
         
         initComponents();
         this.setVisible(true);
     }
+    /**
+     * Metodo que recopila en la variable params los parametros necesarios,
+     * utilizandos en la generacion del reporte.
+     */
         public void extraerDatos() {
         params = new ParametrosReportes();
         if (!txtNombre.getText().isEmpty()) {
@@ -49,24 +57,19 @@ public class GenerarReporte extends javax.swing.JFrame {
         }
         if(!cbPlacas.isSelected() && !cbLicencias.isSelected())
         {
-            System.out.println("esto");
             params.setTipoTramite(TipoTramite.PlacasLicencias);
         }else
         if(cbPlacas.isSelected() && cbLicencias.isSelected())
         {
-            System.out.println("esasas");
             params.setTipoTramite(TipoTramite.PlacasLicencias);
         }else
         if (cbPlacas.isSelected()) {
-            System.out.println("sdadsasasd");
             params.setTipoTramite(TipoTramite.Placas);
         }else
         {
-            System.out.println("saodasnd");
             params.setTipoTramite(TipoTramite.Licencias);
         }
-        
-        
+
         if (dtInicio.getDate() != null) 
         {
             LocalDate seleccion = dtInicio.getDate();
@@ -83,13 +86,17 @@ public class GenerarReporte extends javax.swing.JFrame {
         }
         
     }
-        public void llenarLicenciasTabla(){
+        /**
+         * Metodo que llena la tabla de previsualizacion de tramites.
+         */
+        public void llenarTabla(){
         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblPrevisualizacion.getModel();
         modeloTabla.setRowCount(0);
         for (Tramite tramite : listaTramites) {
             Object[] fila = {
                 tramite.getId(),
+                tramite.getTipoTramite(),
                 tramite.getEstado(),
                 formateador.format(tramite.getFechaExpedicion().getTime()),
                 formateador.format(tramite.getVigencia().getTime()) 
@@ -98,6 +105,31 @@ public class GenerarReporte extends javax.swing.JFrame {
         }
         
     }
+        /**
+         * Metodo que imprime el reporte mandando a llamar el archivo de jasper reports ReporteTramite.jasper.
+         */
+        public void imprimirReporte()
+        {
+            SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+            ArrayList listaReporte = new ArrayList();
+            for(int i = 0;i<listaTramites.size(); i++)
+            {
+                listaReporte.add(new ReporteDTO(listaTramites.get(i).getTipoTramite().toString(),
+                        listaTramites.get(i).getEstado().toString() , formateador.format(listaTramites.get(i).getFechaExpedicion().getTime()), 
+                        listaTramites.get(i).getPersona().getNombre()+" "+listaTramites.get(i).getPersona().getApellidoMaterno()+" "+listaTramites.get(i).getPersona().getApellidoPaterno(),
+                        formateador.format(listaTramites.get(i).getVigencia().getTime()),"$ "+listaTramites.get(i).getCosto()));
+            }
+            JasperReport jr = null;
+            try{
+                jr = (JasperReport) JRLoader.loadObjectFromFile("ReporteTramite.jasper");
+                HashMap parametro = new HashMap();
+                JasperPrint jp = JasperFillManager.fillReport(jr, parametro,new JRBeanCollectionDataSource(listaReporte));
+                JasperViewer jv = new JasperViewer(jp,false);
+                jv.setVisible(true);
+            } catch (JRException ex) {
+            Logger.getLogger(GenerarReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -350,21 +382,21 @@ public class GenerarReporte extends javax.swing.JFrame {
 
         tblPrevisualizacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Estado", "Fecha de Expidicion", "Fecha de Vigencia"
+                "Id", "Tramite", "Estado", "Fecha de Expidicion", "Fecha de Vigencia"
             }
         ));
         jScrollPane1.setViewportView(tblPrevisualizacion);
 
+        btnActualizar.setText("Buscar");
         btnActualizar.setBackground(new java.awt.Color(153, 0, 51));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("Buscar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -388,7 +420,7 @@ public class GenerarReporte extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(216, 216, 216))
+                .addGap(219, 219, 219))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -400,9 +432,9 @@ public class GenerarReporte extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -434,18 +466,26 @@ public class GenerarReporte extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo oyente que extrae los datos de los parametros a buscar y manda a llamar al metodo
+     * imprimirReporte().
+     * @param evt evento recibido.
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         extraerDatos();
             listaTramites = new TramitesDAO().buscar(params);
-            llenarLicenciasTabla();
-        
+            llenarTabla();
+        this.imprimirReporte();
         
     }//GEN-LAST:event_btnAceptarActionPerformed
-
+    /**
+     * Metodo oyente vuelve al menu prinicipal.
+     * @param evt evento recibido.
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         new MenuInicio();
         this.dispose();
+        
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -455,11 +495,16 @@ public class GenerarReporte extends javax.swing.JFrame {
     private void cbPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPlacasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPlacasActionPerformed
-
+    /**
+     * 
+     * Metodo oyente que extrae los datos de los parametros a buscar y manda a llamar al metodo
+     * llenarTabla().
+     * @param evt evento recibido.
+     */
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         extraerDatos();
             listaTramites = new TramitesDAO().buscar(params);
-            llenarLicenciasTabla();
+            llenarTabla();
         
     }//GEN-LAST:event_btnActualizarActionPerformed
 

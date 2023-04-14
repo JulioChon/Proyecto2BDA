@@ -25,7 +25,7 @@ import utilidades.Ventana;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon
  */
 public class HistorialTramitesMostrar extends javax.swing.JFrame {
 

@@ -33,7 +33,7 @@ import utilidades.Ventana;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon
  */
 public class BusquedaPersona extends javax.swing.JFrame {
 

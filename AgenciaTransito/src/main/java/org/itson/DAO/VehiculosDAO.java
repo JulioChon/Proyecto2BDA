@@ -15,24 +15,28 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.itson.dominio.Automovil;
 import org.itson.dominio.Persona;
-import org.itson.dominio.Vehiculo;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon
  */
 public class VehiculosDAO {
+    /**
+     * Metodo que recibe un automivil y lo inserta en la base de datos.
+     * @param automovil automovil que sera insertado en la base de datos.
+     */
     public void registrarAutomovil(Automovil automovil) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
-
         entityManager.getTransaction().begin();
-
         entityManager.persist(automovil);
-
         entityManager.getTransaction().commit();
 
     }
+    /**
+     * Metodo que busca vehiculos en este caso Automoviles de la base de datos.
+     * @return Lista de automoviles
+     */
     public List<Automovil> buscarVehiculo()
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
@@ -45,6 +49,11 @@ public class VehiculosDAO {
         List<Automovil> listaResultados = query.getResultList();
         return  listaResultados;
     }
+    /**
+     * Metodo que busca vehiculos en este caso Automoviles de la base de datos segun su numero de serie.
+     * @param numeroSerie numero de serie que se utilizara para buscar los vehiculos.
+     * @return Lista de automoviles
+     */
     public List<Automovil> buscarVehiculo(String numeroSerie)
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
@@ -60,6 +69,11 @@ public class VehiculosDAO {
         List<Automovil> listaResultados = query.getResultList();
         return  listaResultados;
     }
+    /**
+     * Metodo que busca vehiculos en este caso Automoviles de la base de datos segun la persona que lo posee.
+     * @param persona persona que se utilizara para buscar los vehiculos.
+     * @return Lista de automoviles.
+     */
     public List<Automovil> buscarVehiculo(Persona persona)
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");

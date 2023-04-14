@@ -17,7 +17,7 @@ import javax.persistence.*;
  * Esta clase representa el trámite de Licencia en el sistema. Es una subclase
  * de la clase abstracta Tramite.
  *
- * @author julio
+ * @author Julio Chon, Luis Ayon
  */
 @Entity
 @PrimaryKeyJoinColumn(name = "id_Licencia")

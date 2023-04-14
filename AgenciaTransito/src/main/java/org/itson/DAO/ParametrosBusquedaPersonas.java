@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author julio
+ * @author Julio Chon, Luis Ayon.
  */
 public class ParametrosBusquedaPersonas {
 

@@ -21,6 +21,7 @@ import javax.persistence.*;
  *
  * Contiene los atributos correspondientes a una persona y los métodos
  * necesarios para acceder a ellos.
+ * @author Julio Chon, Luis Ayon
  */
 @Entity
 @Table(name = "Personas")

@@ -15,7 +15,7 @@ import javax.persistence.Id;
  * La clase Automovil es una subclase de Vehiculo y representa a un automóvil en
  * el sistema.
  *
- * @author julio
+ * @author Julio Chon, Luis Ayon
  */
 @Entity
 public class Automovil extends Vehiculo implements Serializable {

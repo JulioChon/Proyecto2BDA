@@ -13,21 +13,27 @@ import utilidades.Ventana;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon
  */
 public class MenuInicio extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuInicio
+     * Metodo que inicializa los objetos del formulario.
      */
     public MenuInicio() {
         initComponents();
         this.setVisible(true);
     }
+    /**
+     * Metodo que muestra un jOptionPane avisando que las personas fueron agregadas correctamente.
+     */
     public void mostrarMensajePersonasGuardadas() {
         JOptionPane.showMessageDialog(this, "Personas agregadas correctamente",
                 "Completado", JOptionPane.INFORMATION_MESSAGE);
     }
+    /**
+     * Metodo que muestra un jOptionPane avisando que las personas fueron agregadas anteriormente.
+     */
      public void mostrarMensajePersonasError() {
         JOptionPane.showMessageDialog(this, "Las personas ya fueron agregadas",
                 "Error", JOptionPane.ERROR_MESSAGE);
@@ -200,12 +206,18 @@ public class MenuInicio extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo oyente que te lleva ala pantalla de busquedaPersona que posteriormente te envia a HistorialTramites.
+     * @param evt evento recibido.
+     */
     private void btnHistorialTramitesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialTramitesActionPerformed
         this.dispose();
         BusquedaPersona busquedaPersona = new BusquedaPersona(Ventana.HISTORIALTRAMITES);
     }//GEN-LAST:event_btnHistorialTramitesActionPerformed
-
+    /**
+     * Metodo oyente que registra las personas.
+     * @param evt evento recibido.
+     */
     private void btnRegistrarPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPersonasActionPerformed
         try {
             PersonasDAO personasDAO = new PersonasDAO();
@@ -215,22 +227,34 @@ public class MenuInicio extends javax.swing.JFrame {
             this.mostrarMensajePersonasError();
         }
     }//GEN-LAST:event_btnRegistrarPersonasActionPerformed
-
+    /**
+     * Metodo oyente que te lleva ala pantalla de busquedaPersona que posteriormente te envia a TramiteLicencia.
+     * @param evt evento recibido.
+     */
     private void btnTramiteLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTramiteLicenciaActionPerformed
         this.dispose();
         BusquedaPersona busquedaPersona = new BusquedaPersona(Ventana.TRAMITELICENCIAS);
     }//GEN-LAST:event_btnTramiteLicenciaActionPerformed
-
+    /**
+     * Metodo oyente que te lleva ala pantalla de busquedaPersona que posteriormente te envia a TramitePlacas.
+     * @param evt evento recibido.
+     */
     private void btnTramitePlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTramitePlacasActionPerformed
         this.dispose();
         BusquedaPersona busquedaPersona = new BusquedaPersona(Ventana.TRAMITEPLACAS);
     }//GEN-LAST:event_btnTramitePlacasActionPerformed
-
+    /**
+     * Metodo oyente que te lleva ala pantalla de RegistrarVehiculo.
+     * @param evt evento recibido.
+     */
     private void btnRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVehiculoActionPerformed
         this.dispose();
         new RegistrarVehiculo(Ventana.MENU);
     }//GEN-LAST:event_btnRegistrarVehiculoActionPerformed
-
+    /**
+     * Metodo oyente que te lleva ala pantalla de GenerarReporte.
+     * @param evt evento recibido.
+     */
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
         this.dispose();
         new GenerarReporte();

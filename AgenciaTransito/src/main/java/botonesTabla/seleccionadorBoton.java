@@ -11,7 +11,10 @@ import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
-
+/**
+ * 
+ * @author Julio Chon, Luis Ayon
+ */
 public class seleccionadorBoton extends AbstractCellEditor implements TableCellEditor {
 
     private JButton boton;

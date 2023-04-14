@@ -6,7 +6,6 @@ package org.itson.DAO;
 
 import excepciones.PersistenciaException;
 import interfaces.IPersonasDAO;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -24,7 +23,7 @@ import org.itson.dominio.Persona;
 
 /**
  *
- * @author julio
+ * @author Julio Chon, Luis Ayon
  */
 public class PersonasDAO implements IPersonasDAO {
 

@@ -17,18 +17,19 @@ import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
 import org.itson.dominio.TipoPlaca;
 import org.itson.dominio.Vehiculo;
-import utilidades.GeneradorClaves;
 import utilidades.Ventana;
 
 /**
  *
- * @author ZaurusS
+ * @author Julio Chon, Luis Ayon
  */
 public class TramitePlacas extends javax.swing.JFrame {
     private Persona persona;
     private List<Automovil> listaAutomoviles;
     /**
-     * Creates new form TramiteLicencia
+     * Constructor que inicializa los objetos del formulario,
+     * entre estos un comboBox con una lista de vehiculos llamando al metodo
+     * cargarCombo().
      */
     public TramitePlacas(Persona persona) {
         this.persona = persona;
@@ -38,20 +39,22 @@ public class TramitePlacas extends javax.swing.JFrame {
         this.setVisible(true);
         cargarCombo();
     }
+    /**
+     * Metodo que carga un comboBox con la lista de vehiculos a cargar.
+     */
     private void cargarCombo()
     {
         DefaultComboBoxModel combo = new DefaultComboBoxModel();
         cbxVehiculos.setModel(combo);
         combo.addAll(listaAutomoviles);
     }
+    /**
+     * Metodo que genera la placa a registrarse.
+     * @return Placa generada
+     */
     private Placa GenerarPlaca()
     {
-        String serie;
-        do
-        {
-            serie = new GeneradorClaves().getRandomString(19);
-        }while(!new TramitesDAO().buscarPlacas(serie).isEmpty());
-        
+        String serie = "Error";
         GregorianCalendar fechaVencimiento = new GregorianCalendar();
         GregorianCalendar fechaEntrega = new GregorianCalendar();
         int costo = costo();
@@ -59,6 +62,10 @@ public class TramitePlacas extends javax.swing.JFrame {
         fechaVencimiento.add(Calendar.YEAR, 1);
         return new Placa(serie, fechaEntrega, TipoPlaca.usado, (Vehiculo) cbxVehiculos.getSelectedItem(), Estado.Activo, costo, new GregorianCalendar(), fechaVencimiento, persona);
     }
+    /**
+     * Metodo que regresa el costo dependiendo si el vehiculo es nuevo o usado.
+     * @return costo
+     */
     private int costo()
     {
         if(new TramitesDAO().buscarPlacas((Vehiculo) cbxVehiculos.getSelectedItem()).isEmpty())
@@ -237,12 +244,18 @@ public class TramitePlacas extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo oyente que registra la placa.
+     * @param evt evento recibido
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if((Vehiculo) cbxVehiculos.getSelectedItem() != null){
+            
             Placa placa = GenerarPlaca();
-            JOptionPane.showMessageDialog(this, "Costo: "+placa.getCosto()+"\nSerie: "+placa.getSerie()+"\nEntrega: "+placa.getFechaEntrega().getTime());
+            
             new TramitesDAO().registrarPlaca(placa);
+            placa = new TramitesDAO().buscarPlacas((Vehiculo) cbxVehiculos.getSelectedItem()).get(new TramitesDAO().buscarPlacas((Vehiculo) cbxVehiculos.getSelectedItem()).size()-1);
+            JOptionPane.showMessageDialog(this, "Costo: "+placa.getCosto()+"\nSerie: "+placa.getSerie()+"\nEntrega: "+placa.getFechaEntrega().getTime());
             new MenuInicio();
             this.dispose();
         }else
@@ -252,12 +265,18 @@ public class TramitePlacas extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnAceptarActionPerformed
-
+    /**
+     * Metodo oyente que te manda ala pantalla de MenuInicio
+     * @param evt evento recibido
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         new MenuInicio();
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+    /**
+     * Metodo oyente que te manda ala pantalla de RegistrarVehiculo
+     * @param evt evento recibido
+     */
     private void btnRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVehiculoActionPerformed
         new RegistrarVehiculo(Ventana.TRAMITEPLACAS);
         this.dispose();

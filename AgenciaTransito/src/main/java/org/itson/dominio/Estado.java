@@ -6,7 +6,7 @@ package org.itson.dominio;
 
 /**
  *
- * @author julio
+ * @author Julio Chon, Luis Ayon
  */
 public enum Estado {
     Activo, Inactivo;

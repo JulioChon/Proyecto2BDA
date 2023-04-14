@@ -6,7 +6,7 @@ package utilidades;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon
  */
 public enum Ventana {
     TRAMITELICENCIAS,TRAMITEPLACAS,REGISTROVEHICULOS,MENU,BUSQUEDAPERSONA,HISTORIALTRAMITES

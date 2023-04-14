@@ -19,7 +19,7 @@ import javax.persistence.*;
  ** Clase que representa un vehículo. Esta clase se utiliza como clase base
  * para las distintas clases de vehículos.
  *
- * @author julio
+ * @author Julio Chon, Luis Ayon
  */
 @Entity
 @Table(name = "Vehiculos")

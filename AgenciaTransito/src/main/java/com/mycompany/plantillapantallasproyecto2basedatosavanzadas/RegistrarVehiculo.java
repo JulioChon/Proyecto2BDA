@@ -17,12 +17,12 @@ import utilidades.Ventana;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon.
  */
 public class RegistrarVehiculo extends javax.swing.JFrame {
     private Ventana ventanaSiguiente;
     /**
-     * Creates new form TramiteLicencia
+     * Constructor que inicializa los objetos de este formulario.
      */
     public RegistrarVehiculo(Ventana ventanaSiguiente) {
         this.ventanaSiguiente = ventanaSiguiente;
@@ -31,6 +31,10 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         this.setVisible(true);
         
     }
+    /**
+     * Metodo que acreedita los campos y regresa un booleano en caso de que estos sean correctos o no.
+     * @return True en caso de que sean correctos, False en caso de que sean incorrectos.
+     */
     public boolean acreeditarCampos()
     {
         
@@ -262,7 +266,10 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo oyente que Registra un vehiculo y regresa a la pantalla correspondiente.
+     * @param evt evento recibido.
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if(acreeditarCampos() )
         {
@@ -286,7 +293,10 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnAceptarActionPerformed
-
+    /**
+     * Metodo oyente que regresa a la ventana correspondiente.
+     * @param evt evento recibido.
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if(ventanaSiguiente == Ventana.TRAMITEPLACAS)
             {
