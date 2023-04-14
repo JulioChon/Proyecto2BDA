@@ -1,7 +1,6 @@
 org\itson\dominio\Tramite_.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$3.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$7.class
-com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$5.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona$1.class
 org\itson\dominio\Estado.class
 botonesTabla\botonRenderizador.class
@@ -32,10 +31,11 @@ com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$6.cl
 org\itson\dominio\TipoPlaca.class
 org\itson\DAO\ParametrosReportes.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte.class
-interfaces\ITramite.class
 org\itson\dominio\Vehiculo_.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$1.class
+interfaces\ITramiteDAO.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar$3.class
+com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo$3.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$2.class
 org\itson\dominio\Vehiculo.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona$3.class
@@ -48,12 +48,13 @@ com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo$1.
 org\itson\DAO\ParametrosBusquedaPersonas.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\HistorialTramitesMostrar$2.class
 utilidades\Ventana.class
+interfaces\IVehiculosDAO.class
 botonesTabla\seleccionadorBoton.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$5.class
-com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$4.class
 org\itson\dominio\Persona_.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\BusquedaPersona$2.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$2.class
+com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo$4.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia.class
 org\itson\dominio\TipoLicencia.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo$2.class
@@ -66,6 +67,5 @@ com\mycompany\plantillapantallasproyecto2basedatosavanzadas\GenerarReporte$1.cla
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio$6.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia$5.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\MenuInicio.class
-com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas$4.class
 com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas.class
 org\itson\dominio\Automovil.class

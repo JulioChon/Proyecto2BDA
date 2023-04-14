@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"botonesTabla"},{"l":"com.mycompany.plantillapantallasproyecto2basedatosavanzadas"},{"l":"excepciones"},{"l":"interfaces"},{"l":"org.itson.DAO"},{"l":"org.itson.dominio"},{"l":"org.itson.pruebas"},{"l":"utilidades"}];updateSearchResults();

@@ -38,7 +38,7 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
     public boolean acreeditarCampos()
     {
         
-        if(Validaciones.validaCampoTexto(txtSerie.getText()) && Validaciones.validaCampoTexto(txtMarca.getText()) && Validaciones.validaCampoTexto(txtLinea.getText()) &&  Validaciones.validaCampoTexto(txtColor.getText())
+        if(Validaciones.validaCampoTexto(txtSerie.getText()) && Validaciones.validaCampoTexto(txtMarca.getText()) && Validaciones.validaCampoTexto(txtLinea.getText()) &&  Validaciones.validaCampoLetras(txtColor.getText())
                 &&  Validaciones.validaCampoTexto(txtModelo.getText())&& new VehiculosDAO().buscarVehiculo(txtSerie.getText()).isEmpty())
         {
          return true;
@@ -108,6 +108,11 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         lblSerie.setText("Serie");
 
         txtSerie.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtSerie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSerieKeyTyped(evt);
+            }
+        });
 
         txtMarca.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
@@ -124,6 +129,11 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
         lblLinea.setText("Linea");
 
         txtColor.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtColor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtColorKeyTyped(evt);
+            }
+        });
 
         lblColor.setBackground(new java.awt.Color(204, 204, 0));
         lblColor.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
@@ -277,6 +287,7 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
             Automovil automovil = new Automovil(txtSerie.getText(), txtColor.getText(), txtLinea.getText(), txtMarca.getText(), txtModelo.getText());
             
             new VehiculosDAO().registrarAutomovil(automovil);
+            JOptionPane.showMessageDialog(this, "El vehiculo se registro exitosamente");
             if(ventanaSiguiente == Ventana.TRAMITEPLACAS)
             {
                 
@@ -311,6 +322,31 @@ public class RegistrarVehiculo extends javax.swing.JFrame {
                 this.dispose();
             }
     }//GEN-LAST:event_btnCancelarActionPerformed
+    /**
+     * Metodo oyente que evita poner espacios.
+     * @param evt evento recibido.
+     */
+    private void txtSerieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyTyped
+        int key = evt.getKeyChar();
+        if(key == 32)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSerieKeyTyped
+    /**
+     * Metodo oyente que evita poner numeros.
+     * @param evt evento recibido.
+     */
+    private void txtColorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColorKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (numeros)
+        {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtColorKeyTyped
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

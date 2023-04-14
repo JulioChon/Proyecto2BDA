@@ -60,9 +60,10 @@ public class PersonasDAO implements IPersonasDAO {
         Persona persona18 = new Persona("RORC7605271F", "Carlos", "Romero", "Rocha", new GregorianCalendar(1976, 5 - 1, 27), "6621875200");
         Persona persona19 = new Persona("GAVL950329RF", "Luis", "García", "Velasco", new GregorianCalendar(1995, 3 - 1, 29), "6671357968");
         Persona persona20 = new Persona("LOAM880721HM", "Mónica", "López", "Alvarado", new GregorianCalendar(1988, 7 - 1, 21), "6681567398");
+        Persona persona21 = new Persona("RFCPRUEBAJSL", "Menor", "Prueba", "Prueba", new GregorianCalendar(2010, 7 - 1, 21),"1111111111");
 
         Persona[] personas = {persona, persona2, persona3, persona4, persona5, persona6, persona7, persona8, persona9, persona10, persona11,
-            persona12, persona13, persona14, persona15, persona16, persona17, persona18, persona19, persona20};
+            persona12, persona13, persona14, persona15, persona16, persona17, persona18, persona19, persona20,persona21};
         
             for (Persona p : personas) {
                 entityManager.persist(p);
@@ -121,7 +122,7 @@ public class PersonasDAO implements IPersonasDAO {
     /**
      * Metodo que devuelve una lista de personas, las cuales en su nombre exista 
      * coinsidencias con el atributo que recibe en su parametros
-     * @param nombreCompleto nombre de la persona o personas que se buscan 
+     * @param nombre nombre de la persona o personas que se buscan 
      * @return lista de personas las cuales tengas coicidencias con el nombre 
      * que recibe en su parametro
      */

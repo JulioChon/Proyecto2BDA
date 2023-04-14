@@ -6,6 +6,7 @@ C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Estado.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Placa.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\TipoLicencia.java
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\interfaces\ITramiteDAO.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\interfaces\IPersonasDAO.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Licencia.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Tramite.java
@@ -15,6 +16,7 @@ C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\RegistrarVehiculo.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\VehiculosDAO.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\utilidades\Ventana.java
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\interfaces\IVehiculosDAO.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramiteLicencia.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\com\mycompany\plantillapantallasproyecto2basedatosavanzadas\TramitePlacas.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\PersonasDAO.java
@@ -25,7 +27,6 @@ C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\utilidades\ReporteDTO.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\botonesTabla\seleccionadorBoton.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\TramitesDAO.java
-C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\interfaces\ITramite.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\excepciones\PersistenciaException.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\dominio\Vehiculo.java
 C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\madres\ProyectoGit\Proyecto2BDA\AgenciaTransito\src\main\java\org\itson\DAO\ParametrosBusquedaPersonas.java

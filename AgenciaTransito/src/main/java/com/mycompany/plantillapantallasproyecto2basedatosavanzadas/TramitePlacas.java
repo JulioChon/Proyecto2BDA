@@ -116,11 +116,6 @@ public class TramitePlacas extends javax.swing.JFrame {
         jLabel9.setText("Seleccion de vehiculo");
 
         cbxVehiculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chevrolet Nizan toyota" }));
-        cbxVehiculos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxVehiculosActionPerformed(evt);
-            }
-        });
 
         btnRegistrarVehiculo.setBackground(new java.awt.Color(153, 0, 51));
         btnRegistrarVehiculo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -282,10 +277,6 @@ public class TramitePlacas extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnRegistrarVehiculoActionPerformed
-
-    private void cbxVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxVehiculosActionPerformed
-
-    }//GEN-LAST:event_cbxVehiculosActionPerformed
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables

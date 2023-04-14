@@ -4,6 +4,7 @@
  */
 package org.itson.DAO;
 
+import interfaces.IVehiculosDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,11 +21,12 @@ import org.itson.dominio.Persona;
  *
  * @author Julio Chon, Luis Ayon
  */
-public class VehiculosDAO {
+public class VehiculosDAO implements IVehiculosDAO{
     /**
      * Metodo que recibe un automivil y lo inserta en la base de datos.
      * @param automovil automovil que sera insertado en la base de datos.
      */
+    @Override
     public void registrarAutomovil(Automovil automovil) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -37,6 +39,7 @@ public class VehiculosDAO {
      * Metodo que busca vehiculos en este caso Automoviles de la base de datos.
      * @return Lista de automoviles
      */
+    @Override
     public List<Automovil> buscarVehiculo()
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
@@ -54,6 +57,7 @@ public class VehiculosDAO {
      * @param numeroSerie numero de serie que se utilizara para buscar los vehiculos.
      * @return Lista de automoviles
      */
+    @Override
     public List<Automovil> buscarVehiculo(String numeroSerie)
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
@@ -74,6 +78,7 @@ public class VehiculosDAO {
      * @param persona persona que se utilizara para buscar los vehiculos.
      * @return Lista de automoviles.
      */
+    @Override
     public List<Automovil> buscarVehiculo(Persona persona)
     {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");

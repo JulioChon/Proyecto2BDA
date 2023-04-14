@@ -6,7 +6,7 @@ package utilidades;
 
 /**
  *
- * @author Zaurus
+ * @author Julio Chon, Luis Ayon
  */
 public enum TipoTramite {
     Placas,Licencias,PlacasLicencias

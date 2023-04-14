@@ -208,12 +208,6 @@ public class GenerarReporte extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nombre");
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
@@ -310,11 +304,6 @@ public class GenerarReporte extends javax.swing.JFrame {
         cbPlacas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cbPlacas.setForeground(new java.awt.Color(255, 255, 255));
         cbPlacas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cbPlacas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbPlacasActionPerformed(evt);
-            }
-        });
 
         cbLicencias.setText("Licencias");
         cbLicencias.setBackground(new java.awt.Color(153, 0, 51));
@@ -487,14 +476,6 @@ public class GenerarReporte extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void cbPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPlacasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbPlacasActionPerformed
     /**
      * 
      * Metodo oyente que extrae los datos de los parametros a buscar y manda a llamar al metodo

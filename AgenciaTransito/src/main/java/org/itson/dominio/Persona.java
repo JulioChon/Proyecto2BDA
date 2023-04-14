@@ -236,7 +236,7 @@ public class Persona implements Serializable {
     /**
      * Establece la lista de trámites realizados por la persona.
      *
-     * @param listaTram
+     * @param listaTramites lista de tramites
      */
     public void setListaTramites(List<Tramite> listaTramites) {
         this.listaTramites = listaTramites;

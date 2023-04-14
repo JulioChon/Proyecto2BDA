@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 /**
- *
+ * prueba
  * @author Julio Chon, Luis Ayon
  */
 public class botonRenderizador implements TableCellRenderer {

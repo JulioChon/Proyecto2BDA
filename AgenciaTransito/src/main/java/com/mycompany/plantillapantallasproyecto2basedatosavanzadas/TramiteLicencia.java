@@ -4,6 +4,8 @@
  */
 package com.mycompany.plantillapantallasproyecto2basedatosavanzadas;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -91,7 +93,14 @@ public class TramiteLicencia extends javax.swing.JFrame {
      * @return true si todos los campos son válidos y false en caso contrario
      */
     public boolean acreeditarCampos() {
-
+        Period anios;
+        LocalDate fecha = LocalDate.of(personaTramite.getFechaNacimiento().get(Calendar.YEAR),personaTramite.getFechaNacimiento().get(Calendar.MONTH),personaTramite.getFechaNacimiento().get(Calendar.DAY_OF_MONTH));
+        anios = Period.between(fecha, LocalDate.now());
+        if(anios.getYears() < 18)
+        {
+            JOptionPane.showMessageDialog(this, personaTramite.getNombre()+" es menor de edad");
+            return false;
+        }
         if (btgVigencia.getSelection() != null && btgDiscapacitado.getSelection() != null) {
             return true;
         } else {

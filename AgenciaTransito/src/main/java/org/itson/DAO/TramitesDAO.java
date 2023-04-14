@@ -4,7 +4,6 @@
  */
 package org.itson.DAO;
 
-import interfaces.ITramite;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -26,12 +25,13 @@ import org.itson.dominio.Persona;
 import org.itson.dominio.Placa;
 import org.itson.dominio.Tramite;
 import org.itson.dominio.Vehiculo;
+import interfaces.ITramiteDAO;
 
 /**
  *
  * @author Julio Chon, Luis Ayon.
  */
-public class TramitesDAO implements ITramite {
+public class TramitesDAO implements ITramiteDAO {
 
     /**
      * Metodo que usa un stored de mysql para agregar una licencia a la 
@@ -106,6 +106,7 @@ public class TramitesDAO implements ITramite {
      * @param persona persona de la cual buscaran las placas
      * @return lista de placas.
      */
+    @Override
     public List<Placa> buscarPlacas(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -125,6 +126,7 @@ public class TramitesDAO implements ITramite {
      * @param vehiculo vehiculo de la cual buscaran las placas
      * @return lista de placas.
      */
+    @Override
     public List<Placa> buscarPlacas(Vehiculo vehiculo) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -144,6 +146,7 @@ public class TramitesDAO implements ITramite {
      * @param serie serie de la cual buscaran las placas
      * @return lista de placas.
      */
+    @Override
     public List<Placa> buscarPlacas(String serie) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -163,6 +166,7 @@ public class TramitesDAO implements ITramite {
      * @param persona persona de la cual buscaran las licencias
      * @return lista de licencias.
      */
+    @Override
     public List<Licencia> buscarLicencias(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -182,6 +186,7 @@ public class TramitesDAO implements ITramite {
      * @param persona persona de la cual buscaran las licencias
      * @return lista de licencias.
      */
+    @Override
     public List<Licencia> buscarLicenciasVigentes(Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -205,6 +210,7 @@ public class TramitesDAO implements ITramite {
      * @param persona persona de la cual buscaran los tramites
      * @return lista de tramites.
      */
+    @Override
     public List<Tramite> buscar(ParametrosReportes params, Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -254,6 +260,7 @@ public class TramitesDAO implements ITramite {
      * @param persona persona de la cual buscaran las placas.
      * @return lista de placas.
      */
+    @Override
     public List<Placa> buscarPlacas(ParametrosReportes params, Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -303,6 +310,7 @@ public class TramitesDAO implements ITramite {
      * @param persona persona de la cual buscaran las licencias.
      * @return lista de licencias.
      */
+    @Override
     public List<Licencia> buscarLicencias(ParametrosReportes params, Persona persona) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("org.itson.agenciaTransito");
         EntityManager entityManager = emFactory.createEntityManager();
@@ -349,6 +357,7 @@ public class TramitesDAO implements ITramite {
      * @param params parametros que se usaran en la busqueda.
      * @return lista de tramites.
      */
+    @Override
     public List<Tramite> buscar(ParametrosReportes params) {
         List<Tramite> listaResultados = new LinkedList<>();
         if(params.getNombre() != null)
